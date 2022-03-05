@@ -6,6 +6,7 @@
 # Node artifact files
 node_modules/
 dist/
+Привет, я сергея Васильев
 
 # Compiled Java class files
 *.class
