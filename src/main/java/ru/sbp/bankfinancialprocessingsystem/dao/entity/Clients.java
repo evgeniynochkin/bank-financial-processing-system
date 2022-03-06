@@ -69,7 +69,8 @@ public class Clients {
      * @param - String phone телефон
      *
      */
-    public Clients(String userLogin, String firstName, String middleName, String lastName, Date birthday, String passport, String passportOrg, Date passportDate, String email, String phone) {
+    public Clients(String userLogin, String firstName, String middleName, String lastName, Date birthday,
+                   String passport, String passportOrg, Date passportDate, String email, String phone) {
         this.userLogin = userLogin;
         this.firstName = firstName;
         this.middleName = middleName;

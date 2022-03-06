@@ -77,6 +77,23 @@ public class ServerController {
 
         return responseString;
     }
+    /**
+     * Метод index выполняет тестирование сервисов Сервера
+     * GET http://localhost:8080/bank/test
+     * @return - String информационная строка
+     */
+    @RequestMapping("/clients")
+    public String getAllClients() {
+
+
+
+        String responseString = appName + "\n" + " DBMS=" + dbType + "\n" + "Сurrent date and time: " + new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(new Date()) + "\n";
+
+        logger.info("Test bankDataRepository.count()=" + clientsRepository.count());
+        responseString = responseString + "Test bankDataRepository.count()=" + clientsRepository.count() + ", ";
+
+        return responseString;
+    }
 
 
 }
