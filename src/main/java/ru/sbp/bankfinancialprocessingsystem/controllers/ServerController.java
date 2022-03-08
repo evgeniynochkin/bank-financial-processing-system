@@ -85,15 +85,10 @@ public class ServerController {
     @RequestMapping("/clients")
     public String getAllClients() {
 
-
-
         String responseString = appName + "\n" + " DBMS=" + dbType + "\n" + "Сurrent date and time: " + new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(new Date()) + "\n";
-
         logger.info("Test bankDataRepository.count()=" + clientsRepository.count());
         responseString = responseString + "Test bankDataRepository.count()=" + clientsRepository.count() + ", ";
 
         return responseString;
     }
-
-
 }

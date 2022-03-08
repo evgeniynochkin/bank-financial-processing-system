@@ -7,13 +7,12 @@ import ru.sbp.bankfinancialprocessingsystem.dao.repositories.ClientsRepository;
 
 import javax.annotation.PostConstruct;
 import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
 @Component
-public class ClientsCatalog {
+public class ClientsCache {
     private final Map<String, Clients> clients = new HashMap<>();
     @Autowired
     private ClientsRepository clientsRepository;
