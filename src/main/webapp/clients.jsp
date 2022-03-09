@@ -1,9 +1,35 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html lang="ru">
+
 <%@ page isELIgnored="false" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page pageEncoding="UTF-8" %>
-<script type="text/javascript" src="file.js"></script>
+<script type="text/javascript">
+    //New client
+    async function NewClient(form) {
+        let newClient = {
+            "userLogin": clientForm.userLogin.value,
+            "firstName": clientForm.firstName.value,
+            "lastName": clientForm.secondName.value,
+            "middleName": clientForm.middleName.value,
+            "birthday": clientForm.birthDay.value,
+            "passport": clientForm.passport.value,
+            "passportOrg": clientForm.passportOrg.value,
+            "passportDate": clientForm.passportDate.value,
+            "email": clientForm.mail.value,
+            "phone": clientForm.telephone.value
+        };
+
+        fetch('../clients/main', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newClient)
+        });
+    }
+</script>
 <head>
 
 	<title>Bank financial processing system</title>
@@ -69,28 +95,6 @@ body {
 			<div id="content-1">
 				<p>Левый столбец</p>
 				<p>
-
-                    Обслуживание клиента (если зарегистрирован)
-                    <form name="newuserform" action="" method="POST" onsubmit="NewUser(this)" enctype="multipart/form-data">
-                        <h4>Добавить нового пользователя</h4>
-                        <div class="form-group">
-                            <label for="formGroupLoginInput">Логин</label>
-                            <input type="text" class="form-control" name="formlogin"
-                                   id="formGroupLoginInput" placeholder="Логин"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="formGroupPasswordInput">Пароль</label>
-                            <input type="text" class="form-control" name="formpassword"
-                                   id="formGroupPasswordInput" placeholder="Пароль"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="formGroupUsernameInput">Имя</label>
-                            <input type="text" class="form-control" name="formusername"
-                                   id="formGroupUsernameInput" placeholder="Имя"/>
-                        </div>
-                        <button type="submit" class="btn btn-primary" value="save">Отправить</button>
-                    </form>
-
 				</p>
 			</div>
 			<div id="content-2">
@@ -103,24 +107,38 @@ body {
                                 Получить всех!
                             </button>
                         </form>
+                        <fieldset>
+                                <legend>Поиск клиента по логину</legend>
+                            <form action="../clients/find" method="GET" >
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="userLogin">Имя входа клиента</label>
+                                    <div class="col-md-4">
+                                        <input id="login" name="userLogin" type="input" placeholder="userLogin" class="form-control input-md" value="${userData.userLogin}"> [NN U]
+                                    </div>
+                                </div>
+                                <P>
+                                    <button id="find" class="btn btn-default">Найти</button>
 
-                        <label class="col-md-4 control-label" for="registration">Регистрировать / Поиск</label></p>
-                        <div class="col-md-8">
-                            <button id="registration" name="registration" class="btn btn-default">Регистрация</button>
-
-
-
-                            <form action="../clients/main" method="GET" >
-                                <button id="find" value="all" name="find" class="btn btn-default">Поиск клиента</button>
+                                </P>
                             </form>
-                        </div>
+                            <form action="../clients/delete" method="DELETE" >
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="userLogin">Имя входа клиента</label>
+                                    <div class="col-md-4">
+                                        <input id="loginDel" name="userLogin" type="input" placeholder="userLogin" class="form-control input-md" value="${userData.userLogin}"> [NN U]
+                                    </div>
+                                </div>
+                                <P>
+                                    <button id="delete" class="btn btn-default">Удалить</button>
+                                </P>
+                            </form>
+                        </fieldset>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="edit">Изменить / Удалить текущего</label>
+                        <label class="col-md-4 control-label" for="delete">Удалить по логину</label>
                         <div class="col-md-8">
-                            <button id="edit" name="edit" class="btn btn-default">Изменить</button>
-                            <button id="delete" name="delete" class="btn btn-default">Удалить</button>
+
                         </div>
                     </div>
 
@@ -129,12 +147,10 @@ body {
                     <p></p>
 
                     <fieldset>
-
-                        <!-- Form Name -->
-                        <legend>Client of bank</legend>
-
+                        <legend>Client of bank / Регистрация клиента</legend>
+                        <form name="clientForm" class="form-horizontal" onsubmit="NewClient(this)">
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="userLogin">UserLogin</label>
+                            <label class="col-md-4 control-label" for="userLogin">Имя входа клиента</label>
                             <div class="col-md-4">
                                 <input id="userLogin" name="userLogin" type="input" placeholder="userLogin" class="form-control input-md" value="${userData.userLogin}"> [NN U]
                             </div>
@@ -151,7 +167,7 @@ body {
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="secondName">Фамилия </label>
                             <div class="col-md-4">
-                                <input id="secondName" name="secondName" type="input" placeholder="Фамилия" class="form-control input-md"  value="${userData.secondName}"> [NN]
+                                <input id="secondName" name="secondName" type="input" placeholder="Фамилия" class="form-control input-md"  value="${userData.lastName}"> [NN]
 
                             </div>
                         </div>
@@ -167,7 +183,7 @@ body {
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="birthDay">День рождения </label>
                             <div class="col-md-4">
-                                <input id="birthDay" name="birthDay" type="input" placeholder="День рождения" class="form-control input-md" value="${userData.birthDay}"> [NN]
+                                <input id="birthDay" name="birthDay" type="input" placeholder="День рождения" class="form-control input-md" value="${userData.birthday}"> [NN]
 
                             </div>
                         </div>
@@ -199,26 +215,19 @@ body {
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="mail">Электронная почта</label>
                             <div class="col-md-4">
-                                <input id="mail" name="mail" type="input" placeholder="Электронная почта" class="form-control input-md" value="${userData.mail}">
-
+                                <input id="mail" name="mail" type="input" placeholder="Электронная почта" class="form-control input-md" value="${userData.email}">
                             </div>
                         </div>
-
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="telephone">Телефон</label>
                             <div class="col-md-4">
-                                <input id="telephone" name="telephone" type="input" placeholder="Телефон" class="form-control input-md" value="${userData.telephone}">
+                                <input id="telephone" name="telephone" type="input" placeholder="Телефон" class="form-control input-md" value="${userData.phone}">
                             </div>
                         </div>
-
-
-
+                        <p><button type="submit" class="btn btn-primary" value="save">Сохранить / изменить</button></p>
+                    </form>
                     </fieldset>
-
                     <p>
-                    <form class="form-horizontal">
-                        </form>
-                    </p>
 				</div>
 			</div>
 		</div>

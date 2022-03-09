@@ -16,7 +16,6 @@ import java.sql.Date;
 @Entity
 @Table(name = "clients", schema = "public", catalog = "backofficedb")
 public class Clients {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "user_login")
     private String userLogin;
@@ -69,8 +68,7 @@ public class Clients {
      * @param - String phone телефон
      *
      */
-    public Clients(String userLogin, String firstName, String middleName, String lastName, Date birthday,
-                   String passport, String passportOrg, Date passportDate, String email, String phone) {
+    public Clients(String userLogin, String firstName, String middleName, String lastName, Date birthday, String passport, String passportOrg, Date passportDate, String email, String phone) {
         this.userLogin = userLogin;
         this.firstName = firstName;
         this.middleName = middleName;

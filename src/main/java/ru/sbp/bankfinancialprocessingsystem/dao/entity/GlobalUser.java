@@ -16,7 +16,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "global_user", schema = "public", catalog = "backofficedb")
 public class GlobalUser {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "user_login")
     private String userLogin;
