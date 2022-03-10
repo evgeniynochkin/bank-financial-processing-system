@@ -1,6 +1,5 @@
 package ru.sbp.bankfinancialprocessingsystem.dao.entity.enums;
 
-import ru.sbp.bankfinancialprocessingsystem.dao.entity.Accounts;
 import ru.sbp.bankfinancialprocessingsystem.dao.entity.Cards;
 
 /**

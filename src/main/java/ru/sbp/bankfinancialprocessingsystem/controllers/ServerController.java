@@ -39,7 +39,7 @@ public class ServerController {
     private ClientsRepository clientsRepository;
 
     @Autowired
-    private AccountsRepository accountsRepository;
+    private AccountRepository accountRepository;
 
     @Autowired
     private TransactionsRepository transactionsRepository;
@@ -66,8 +66,8 @@ public class ServerController {
         logger.info("Test bankDataRepository.count()=" + clientsRepository.count());
         responseString = responseString + "Test bankDataRepository.count()=" + clientsRepository.count() + ", ";
 
-        logger.info("Test accountsRepository.count()=" + accountsRepository.count());
-        responseString = responseString + "Test accountsRepository.count()=" + accountsRepository.count() + ", ";
+        logger.info("Test accountsRepository.count()=" + accountRepository.count());
+        responseString = responseString + "Test accountsRepository.count()=" + accountRepository.count() + ", ";
 
         logger.info("Test transactionsRepository.count()=" + transactionsRepository.count());
         responseString = responseString + "Test transactionsRepository.count()=" + transactionsRepository.count() + ", ";
