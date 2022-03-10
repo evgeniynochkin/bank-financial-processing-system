@@ -16,7 +16,11 @@ import ru.sbp.bankfinancialprocessingsystem.dao.entity.Account;
 @Configuration
 @ComponentScan(basePackages = "ru.sbp.bankfinancialprocessingsystem")
 @EnableJpaRepositories(basePackages = "ru.sbp.bankfinancialprocessingsystem.dao.repositories")
-@PropertySource("application.properties")
+// @PropertySource("application.properties")
+@PropertySource(value= {"classpath:application.properties","classpath:pos.properties"}
+        , name="ss"
+        , encoding="utf-8"
+        ,ignoreResourceNotFound=true)
 public class ServerConfig {
 
 
