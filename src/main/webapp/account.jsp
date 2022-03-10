@@ -18,7 +18,6 @@
 <form action="/updateDeposit" method="get" >
 	<input type="submit" value="Deposit money">
 </form>
-<%--target="_blank"--%>
  <form action="/withdrawCash" method="get">
 	 <input type="submit" value="Withdraw cash">
  </form>

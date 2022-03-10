@@ -13,8 +13,10 @@ ${accountNumber}<br>
 
 <form action="/createAnAccount" method="post">
     Input the account type:<br>
+    (1 = CARD)<br>
     <input name="accountType"><br>
     Input currency:<br>
+    ( 1 = RUB)<br>
     <input name="currency"><br>
     Input cash:<br>
     <input name="balance"><br>

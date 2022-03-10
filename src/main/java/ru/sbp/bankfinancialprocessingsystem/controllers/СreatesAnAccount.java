@@ -9,8 +9,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import ru.sbp.bankfinancialprocessingsystem.dao.entity.Account;
 import ru.sbp.bankfinancialprocessingsystem.dao.repositories.AccountRepository;
-import ru.sbp.bankfinancialprocessingsystem.services.AccountService;
-import ru.sbp.bankfinancialprocessingsystem.services.СalculationsAccount;
+import ru.sbp.bankfinancialprocessingsystem.service.account.AccountService;
+import ru.sbp.bankfinancialprocessingsystem.service.account.СalculationsAccount;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * @autor Sergey Vasiliev
@@ -65,9 +68,9 @@ public class СreatesAnAccount {
 
     @PostMapping
     public ModelAndView updateDeposit(
-            @RequestParam("accountType") String accountType,
-            @RequestParam("currency") String currency,
-            @RequestParam("balance") String moneyString) {
+                                      @RequestParam("accountType") String accountType,
+                                      @RequestParam("currency") String currency,
+                                      @RequestParam("balance") String moneyString) {
 
         ModelAndView modelAndView = new ModelAndView();
         if("" == moneyString ){

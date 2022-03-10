@@ -1,4 +1,4 @@
-package ru.sbp.bankfinancialprocessingsystem.services;
+package ru.sbp.bankfinancialprocessingsystem.service.account;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +7,10 @@ import org.springframework.stereotype.Service;
 import ru.sbp.bankfinancialprocessingsystem.dao.entity.Account;
 import ru.sbp.bankfinancialprocessingsystem.dao.repositories.AccountRepository;
 
+/**
+ * Сервис для генерации номера счета.
+ * @autor Sergey Vasiliev
+ */
 @Service
 public class GeneratedNumberAccount {
 

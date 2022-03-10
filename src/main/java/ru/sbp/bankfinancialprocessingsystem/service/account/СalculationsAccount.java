@@ -1,4 +1,4 @@
-package ru.sbp.bankfinancialprocessingsystem.services;
+package ru.sbp.bankfinancialprocessingsystem.service.account;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -7,6 +7,7 @@ import ru.sbp.bankfinancialprocessingsystem.dao.repositories.AccountRepository;
 
 /**
  * Сервис для снятия и получения денег.
+ * @autor Sergey Vasiliev
  */
 @Service
 public class СalculationsAccount {

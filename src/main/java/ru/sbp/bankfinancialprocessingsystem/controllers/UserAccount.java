@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import ru.sbp.bankfinancialprocessingsystem.dao.entity.Account;
 import ru.sbp.bankfinancialprocessingsystem.dao.repositories.AccountRepository;
-import ru.sbp.bankfinancialprocessingsystem.services.СalculationsAccount;
+import ru.sbp.bankfinancialprocessingsystem.service.account.СalculationsAccount;
 
 /**
  * @autor Sergey Vasiliev
@@ -16,8 +16,6 @@ import ru.sbp.bankfinancialprocessingsystem.services.СalculationsAccount;
 @RequestMapping(value = "/infoAccount")
 public class UserAccount {
 
-    //        ApplicationContext context = new AnnotationConfigApplicationContext("ru.sbp");
-//        AccountRepository repository = context.getBean(AccountRepository.class);
     /**
      * Cвязь с репозиторием и бд
      */
@@ -29,12 +27,6 @@ public class UserAccount {
      */
     @Autowired
     private СalculationsAccount сalculations;
-
-
-
-//    public void setRepository(AccountRepository repository) {
-//        this.repository = repository;
-//    }
 
     /**
      * Отправляет информацию по наименованию клиента(name), номеру аккаунта(accountNumber),

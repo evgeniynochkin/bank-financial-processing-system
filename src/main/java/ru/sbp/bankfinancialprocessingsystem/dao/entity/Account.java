@@ -5,7 +5,6 @@ import ru.sbp.bankfinancialprocessingsystem.dao.entity.enums.AccountType;
 import ru.sbp.bankfinancialprocessingsystem.dao.entity.enums.CurrencyType;
 
 import javax.persistence.*;
-//import java.sql.Date;
 import java.util.Date;
 /**
  * Класс Accounts - POJO-класс (Plain Old Java Object) таблицы account
