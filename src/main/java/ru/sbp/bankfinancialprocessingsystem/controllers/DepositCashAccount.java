@@ -8,7 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import ru.sbp.bankfinancialprocessingsystem.dao.entity.Account;
+import ru.sbp.bankfinancialprocessingsystem.dao.entity.Transactions;
+import ru.sbp.bankfinancialprocessingsystem.dao.entity.enums.OperationType;
 import ru.sbp.bankfinancialprocessingsystem.dao.repositories.AccountRepository;
+import ru.sbp.bankfinancialprocessingsystem.service.account.TransactionAccount;
 import ru.sbp.bankfinancialprocessingsystem.service.account.СalculationsAccount;
 
 /**
@@ -19,7 +22,7 @@ import ru.sbp.bankfinancialprocessingsystem.service.account.СalculationsAccount
 public class DepositCashAccount {
 
     /**
-     * Связь с репозеторием db
+     * Связь с репозеторием аккаунта в db
      */
     @Autowired
     private AccountRepository repository;
@@ -41,6 +44,12 @@ public class DepositCashAccount {
      */
     @Autowired
     private ErorrAccount erorr;
+
+    /**
+     * Запись транзакции в bd.
+     */
+    @Autowired
+    private TransactionAccount transactionAccount;
 
     /**
      * Номер счета
@@ -95,6 +104,7 @@ public class DepositCashAccount {
      *      Если номер счета не введен или введен тот, которого его
      * нет в bd, выскакивает окно с просьбой проверить № или
      * создать новый.
+     *    Также записывается транзакция в бд.
 //     * @param request
 //     * @param response
      * @param moneyString
@@ -123,6 +133,9 @@ public class DepositCashAccount {
             e.fillInStackTrace();
             return erorr.getErorrNumberInfo();
         }
+        transactionAccount.setInformation(account.getNumberAccount(),
+                OperationType.CashIn, money);
+        transactionAccount.createNewAccount();
 
         account.setBalance(сalculations.getNewBalance());
         System.out.println(account.toString());

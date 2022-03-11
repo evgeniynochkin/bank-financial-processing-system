@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 public class СreatesAnAccount {
 
     /**
-     * Связь с репозеторием db.
+     * Связь с репозеторием аккаунта в db.
      */
     private AccountRepository repository;
 
