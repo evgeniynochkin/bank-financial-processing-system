@@ -1,6 +1,5 @@
 package ru.sbp.bankfinancialprocessingsystem.dao.repositories;
-
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import ru.sbp.bankfinancialprocessingsystem.dao.entity.Transactions;
 
@@ -9,9 +8,13 @@ import ru.sbp.bankfinancialprocessingsystem.dao.entity.Transactions;
  *
  * @version 1.0
  * @autor Sergey Proshchaev
- * @see Transactions#Object()
+ * @autor Sergey Vasiliev
  */
 @Repository
-public interface TransactionsRepository extends CrudRepository<Transactions, Integer> {
+public interface TransactionsRepository extends  JpaRepository<Transactions, String> {
+
+    Transactions findByNumberAccount (String numberAccount);
+
+    Transactions findByCodeAuthorization (String numberAccount);
 
 }

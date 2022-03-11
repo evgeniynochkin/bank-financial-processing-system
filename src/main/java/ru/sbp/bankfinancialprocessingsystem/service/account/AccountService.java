@@ -43,7 +43,7 @@ public class AccountService {
      * Генерация номера счета.
      */
     @Autowired
-    private GeneratedNumberAccount generated;
+    private GeneratedNumber generated;
 
     /**
      * Вызов entity для работы с db.

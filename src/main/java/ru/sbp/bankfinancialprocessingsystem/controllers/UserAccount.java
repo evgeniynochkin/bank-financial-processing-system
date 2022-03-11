@@ -17,7 +17,7 @@ import ru.sbp.bankfinancialprocessingsystem.service.account.СalculationsAccount
 public class UserAccount {
 
     /**
-     * Cвязь с репозиторием и бд
+     * Cвязь с репозиторием аккаунта в бд
      */
     @Autowired
     private AccountRepository repository;

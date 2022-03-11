@@ -8,8 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import ru.sbp.bankfinancialprocessingsystem.dao.entity.Account;
+import ru.sbp.bankfinancialprocessingsystem.dao.entity.enums.OperationType;
 import ru.sbp.bankfinancialprocessingsystem.dao.repositories.AccountRepository;
+import ru.sbp.bankfinancialprocessingsystem.service.account.TransactionAccount;
 import ru.sbp.bankfinancialprocessingsystem.service.account.СalculationsAccount;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * @autor Sergey Vasiliev
@@ -19,7 +24,7 @@ import ru.sbp.bankfinancialprocessingsystem.service.account.СalculationsAccount
 public class WithdrawCashAccount {
 
     /**
-     * Связь с репозеторием db
+     * Связь с репозеторием аккаунта в db
      */
     @Autowired
     private AccountRepository repository;
@@ -41,6 +46,12 @@ public class WithdrawCashAccount {
      */
     @Autowired
     private ErorrAccount erorr;
+
+    /**
+     * Запись транзакции в bd.
+     */
+    @Autowired
+    private TransactionAccount transactionAccount;
 
     /**
      * Номер счета
@@ -100,14 +111,15 @@ public class WithdrawCashAccount {
      *      Если номер счета не введен или введен тот, которого его
      * нет в bd, выскакивает окно с просьбой проверить № или
      * создать новый.
+     *      Также записывается транзакция в бд.
      * @param moneyString
      * @param numberAccount
      * @return
      */
     @PostMapping
     public ModelAndView updateWithdraw(
-//            HttpServletRequest request,
-//                                      HttpServletResponse response,
+            HttpServletRequest request,
+                                      HttpServletResponse response,
                                       @RequestParam("money") String moneyString,
                                       @RequestParam("numberAccount") String numberAccount){
 
@@ -131,6 +143,9 @@ public class WithdrawCashAccount {
         if (сalculations.getNewBalance() < 0){
             return this.getInformationWithdrawСash();
         }
+        transactionAccount.setInformation(account.getNumberAccount(),
+                OperationType.CashOut, money);
+        transactionAccount.createNewAccount();
 
         account.setBalance(сalculations.getNewBalance());
         repository.save(account);
