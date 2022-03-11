@@ -1,7 +1,12 @@
 package ru.sbp.bankfinancialprocessingsystem.dao.repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import ru.sbp.bankfinancialprocessingsystem.dao.entity.Transactions;
+
+import java.util.Collection;
+import java.util.List;
 
 /**
  * Интерфейс TransactionsRepository для реализации методов CrudRepository
@@ -15,6 +20,10 @@ public interface TransactionsRepository extends  JpaRepository<Transactions, Str
 
     Transactions findByNumberAccount (String numberAccount);
 
-    Transactions findByCodeAuthorization (String numberAccount);
+    Transactions findByCodeAuthorization (String codeAuthorization);
+
+    Transactions findAllByNumberAccount (String numberAccount);
+//    @Query("select e from StudentEntity e where e.courseNumber in :courses" )
+//    List<StudentEntity> getStudentBySingleCourse(@Param("courses") Collection<Integer> cList);
 
 }

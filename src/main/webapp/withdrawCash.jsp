@@ -8,20 +8,18 @@
 
 Enter the amount of cash withdrawn.
 
-<form action="/withdrawCash" method="get">
-    	Balance:${newBalance}
+<form action="/account/info/withdrawCash" method="get">
+    	Balance:${newBalance} ${currency}
 	${errorBalance}
 </form>
-<form action="/withdrawCash" method="post">
-	Input number account:<br>
-	<input name="numberAccount"><br>
+<form action="/account/info/withdrawCash" method="post">
 	Input withdraw cash:<br>
 	<input name="money"><br>
 	<input type="submit"><br>
 </form>
 	<br>
 	<br>
-	<form action="/infoAccount" method="get">
+	<form action="/account/info" method="get">
 	<input type="submit" value="Back">
 	</form>
 </body>

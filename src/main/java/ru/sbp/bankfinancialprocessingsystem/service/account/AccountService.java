@@ -29,11 +29,6 @@ public class AccountService {
     private String accountType;
 
     /**
-     * Поступаеммая сумма.
-     */
-    private double money;
-
-    /**
      * Связь с репозеторием db.
      */
     @Autowired
@@ -62,28 +57,25 @@ public class AccountService {
      * Получение информации о счете
      * @param currency
      * @param accountType
-     * @param money
      */
-    public void setInformation (String currency, String accountType, double money){
+    public void setInformation (String currency, String accountType){
         this.currency = currency;
         this.accountType = accountType;
-        this.money = money;
     }
-
 
     /**
      * Создание нового счетац
      * @return
      */
-    public boolean createNewAccount() {
+    public String createNewAccount() {
         Date date = new Date();
 
         int numberOfVariations = 2;
         String []  a = new String[numberOfVariations];
         a[0] = "1";
-
-        account.setNumberAccount(generated.getNumberAccount());
-        account.setBalance(money);
+        String newNumber = generated.getNumberAccount();
+        account.setNumberAccount(newNumber);
+        account.setBalance(0.);
         account.setAccountActive(true);
         if (currency.equals(a[0])) {
             account.setAccountType(AccountType.Card);
@@ -99,6 +91,6 @@ public class AccountService {
         //вызов узер логин
         account.setUserLogin("ser");
         repository.save(account);
-        return true;
+        return newNumber;
     }
 }
