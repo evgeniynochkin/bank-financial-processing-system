@@ -9,14 +9,12 @@ import javax.persistence.*;
  *
  * @version 1.0
  * @autor Sergey Proshchaev
- * @see GlobalUser#Object()
- * @see UserRoleType#Object()
+ *
  *
  */
 @Entity
 @Table(name = "global_user", schema = "public", catalog = "backofficedb")
 public class GlobalUser {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "user_login")
     private String userLogin;
@@ -26,8 +24,7 @@ public class GlobalUser {
 
     @Basic
     @Column(name = "user_role")
-    @Enumerated(EnumType.STRING)
-    private UserRoleType userRole;
+    private String userRole;
 
     public String getUserLogin() {
         return userLogin;
@@ -50,7 +47,7 @@ public class GlobalUser {
     }
 
     public void setUserRole(UserRoleType userRole) {
-        this.userRole = userRole;
+        this.userRole = userRole.name();
     }
 
     /**
@@ -61,7 +58,7 @@ public class GlobalUser {
 
     /**
      * Конструктор класса с параметрами
-     *
+     *@GeneratedValue(strategy = GenerationType.IDENTITY)
      * @param - String userLogin,
      * @param - String userPassword,
      * @param - UserRoleType userRole
@@ -69,7 +66,7 @@ public class GlobalUser {
     public GlobalUser(String userLogin, String userPassword, UserRoleType userRole) {
         this.userLogin = userLogin;
         this.userPassword = userPassword;
-        this.userRole = userRole;
+        this.userRole = userRole.name();
     }
 
     @Override

@@ -16,7 +16,6 @@ import java.sql.Date;
 @Entity
 @Table(name = "clients", schema = "public", catalog = "backofficedb")
 public class Clients {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "user_login")
     private String userLogin;
@@ -56,7 +55,7 @@ public class Clients {
 
     /**
      * Конструктор класса с параметрами
-     *
+     *  @GeneratedValue(strategy = GenerationType.IDENTITY)
      * @param - String userLogin логин
      * @param - String firstName имя
      * @param - String middleName отчество
