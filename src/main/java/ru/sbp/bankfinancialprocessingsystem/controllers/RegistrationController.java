@@ -17,6 +17,9 @@ import ru.sbp.bankfinancialprocessingsystem.service.CustomUserDetailedService;
 import java.time.LocalDate;
 import java.util.Date;
 
+/**
+ * @author Konstantin Filin
+ */
 
 @Controller
 public class RegistrationController {
@@ -60,6 +63,7 @@ public class RegistrationController {
             modelAndView.addObject("message", " not found");
             modelAndView.setViewName("delete_user_message.jsp");
         }else {
+            Clients client = detailedService.getClient(userlogin);
             detailedService.deleteGlobalUser(userlogin);
             detailedService.deleteUserData(userlogin);
             modelAndView.addObject("userlogin", userlogin);
@@ -137,7 +141,10 @@ public class RegistrationController {
     ){
         ModelAndView modelAndView = new ModelAndView();
         GlobalUser globalUserFromDB= detailedService.getGlobalUser(userlogin);
-        if( !userlogin.equals("") && globalUserFromDB == null) {
+        if( !userlogin.equals("")
+                && !birthday.equals("")
+                && !passportdate.equals("")
+                && globalUserFromDB == null) {
             Clients clients = new Clients();
             clients.setUserLogin(userlogin);
             clients.setFirstName(firstname);
@@ -168,7 +175,13 @@ public class RegistrationController {
 
             modelAndView.setViewName("/add_user_success.jsp");
         }else{
-            modelAndView.addObject("userlogin", userlogin);
+            if(globalUserFromDB!=null){
+                modelAndView.addObject("userlogin", userlogin);
+                modelAndView.addObject("message", " already exists.");
+            }else{
+                modelAndView.addObject("userlogin", userlogin);
+                modelAndView.addObject("message", " сannot be added.");
+            }
             modelAndView.setViewName("/fail_add_user.jsp");
         }
         return modelAndView;

@@ -36,6 +36,14 @@
 			alert("Wrong name length.");
 		return(false);
         }
+
+		var middlename = document.registerForm.middlename;
+		if (middlename.value == "") {
+			alert("Missing middlename.");
+		return(false);
+		}
+
+
 		var lastname = document.registerForm.lastname;
 		if (lastname.value == "") {
 			alert("Missing lastname.");
@@ -44,6 +52,26 @@
 		if (lastname.value.length < 2) {
 			alert("Wrong lastname length.");
 		return(false);
+        }
+
+        var birthday = document.registerForm.birthday
+        if (birthday.value == "") {
+        			alert("Missing birthday.");
+        		return(false);
+        }
+		if (birthday.value.length < 10) {
+			alert("Wrong birthday length.");
+		return(false);
+        }
+
+        var passportdate = document.registerForm.passportdate
+         if (passportdate.value == "") {
+                	alert("Missing passportdate.");
+            return(false);
+         }
+   		if (passportdate.value.length < 10) {
+      			alert("Wrong passportdate length.");
+      		return(false);
         }
 
 		var email = document.registerForm.email;
@@ -127,7 +155,23 @@
 		text-align:right;
 	}
 
-	</style>
+    .button24{
+      display: inline-block;
+      color: white;
+      text-decoration: none;
+      padding: .5em 2em;
+      outline: none;
+      border-width: 2px 0;
+      border-style: solid none;
+      border-color: #FDBE33 #000 #D77206;
+      border-radius: 6px;
+      background: linear-gradient(#F3AE0F, #E38916) #E38916;
+      transition: 0.2s;
+    }
+    .button24:hover { background: linear-gradient(#f5ae00, #f59500) #f5ae00; }
+    .button24:active { background: linear-gradient(#f59500, #f5ae00) #f59500; }
+    </style>
+
 </head>
 <body>
 <div class = "box">
@@ -184,9 +228,8 @@
                 </div>
                 <div class="field_signup">
                     <input type="submit" value="Registration user" />
-                    <br><br>
-                     <input type="button" value="Admin Menu" onclick="window.location.href='/afterlogin';"/>
-                     <h4><a href="/logout">Logout</a></h4>
+                    <br>
+                    <a href="/afterlogin" class="button24">Go back</a> <a href="/logout" class="button24">Logout</a>
                 </div>
             </div>
         </div>
@@ -195,3 +238,7 @@
 <script src="js/jquery-3.3.1.min.js"></script>
 </body>
 </html>
+
+<!--
+                     <input type="button" value="Admin Menu" onclick="window.location.href='/afterlogin';"/>
+-->

@@ -19,6 +19,11 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * @author Konstantin Filin
+ */
+
+
 @Component
 public class CustomUserDetailedService implements UserDetailsService {
 
@@ -71,6 +76,16 @@ public class CustomUserDetailedService implements UserDetailsService {
             return null;
         }
     }
+
+    public Clients getClient(String username) {
+        Optional<Clients> clientFromDB = clientsRepository.findById(username);
+        if(clientFromDB.isPresent()) {
+            return clientFromDB.get();
+        }else {
+            return null;
+        }
+    }
+
 
     public boolean deleteGlobalUser(String username){
         Optional<GlobalUser> globalUserFromDB = globalUserRepository.findById(username);
