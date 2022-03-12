@@ -44,8 +44,8 @@ public class ServerController {
     @Autowired
     private TransactionsRepository transactionsRepository;
 
-    @Autowired
-    private CardsRepository cardsRepository;
+//    @Autowired
+//    private CardsRepository cardsRepository;
 
     /**
      * Метод index выполняет тестирование сервисов Сервера
@@ -72,8 +72,8 @@ public class ServerController {
         logger.info("Test transactionsRepository.count()=" + transactionsRepository.count());
         responseString = responseString + "Test transactionsRepository.count()=" + transactionsRepository.count() + ", ";
 
-        logger.info("Test cardsRepository.count()=" + cardsRepository.count());
-        responseString = responseString + "Test cardsRepository.count()=" + cardsRepository.count() + ".";
+//        logger.info("Test cardsRepository.count()=" + cardsRepository.count());
+//        responseString = responseString + "Test cardsRepository.count()=" + cardsRepository.count() + ".";
 
         return responseString;
     }

@@ -11,39 +11,52 @@ import java.sql.Date;
  * Класс Accounts - POJO-класс (Plain Old Java Object) таблицы accounts
  *
  * @version 1.0
- * @autor Sergey Proshchaev
+ * @autor Sergey Proshchaev, Evgeniy Nochkin
  * @see AccountsRepository#Object()
  *
  */
 @Entity
 public class Accounts {
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "number_account")
     private String numberAccount;
+
     @Basic
     @Column(name = "user_login")
+
     private String userLogin;
     @Basic
     @Column(name = "account_active")
+
     private Boolean accountActive;
     @Basic
     @Column(name = "date_open")
+
     private Date dateOpen;
     @Basic
     @Column(name = "currency")
     @Enumerated(EnumType.STRING)
+
     private CurrencyType currency;
     @Basic
     @Column(name = "balance")
+
     private Double balance;
     @Basic
     @Column(name = "account_type")
     @Enumerated(EnumType.STRING)
+
     private AccountType accountType;
     @Basic
     @Column(name = "date_close")
+
     private Date dateClose;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "card_id", referencedColumnName = "card_id")
+    private Card card;
 
     /**
      * Конструктор класса

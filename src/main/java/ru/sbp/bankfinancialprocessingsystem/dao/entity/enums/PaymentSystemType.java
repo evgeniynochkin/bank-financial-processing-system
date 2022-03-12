@@ -1,12 +1,12 @@
 package ru.sbp.bankfinancialprocessingsystem.dao.entity.enums;
 
-import ru.sbp.bankfinancialprocessingsystem.dao.entity.Cards;
+import ru.sbp.bankfinancialprocessingsystem.dao.entity.Card;
 
 /**
  * Класс enum содержит описание значений поля в таблие cards.payment_system
  * @autor Sergey Proshchaev
  * @version 1.0
- * @see Cards#Object()
+ * @see Card#Object()
  */
 public enum PaymentSystemType {
     VISA,

@@ -1,17 +1,18 @@
 package ru.sbp.bankfinancialprocessingsystem.dao.repositories;
 
-import org.springframework.data.repository.CrudRepository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import ru.sbp.bankfinancialprocessingsystem.dao.entity.Cards;
+import ru.sbp.bankfinancialprocessingsystem.dao.entity.Card;
 
 /**
- * Интерфейс CardsRepository для реализации методов CrudRepository
+ * Интерфейс CardsRepository для реализации методов JpaRepository
  *
  * @version 1.0
- * @autor Sergey Proshchaev
- * @see Cards#Object()
+ * @autor Evgeniy Nochkin
+ * @see Card#Object()
  */
 @Repository
-public interface CardsRepository extends CrudRepository<Cards, String> {
-
+public interface CardsRepository extends JpaRepository<Card, Integer> {
+    Card findCardById(Integer id);
 }
