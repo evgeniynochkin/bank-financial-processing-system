@@ -1,46 +1,57 @@
 package ru.sbp.bankfinancialprocessingsystem.dao.entity;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.springframework.stereotype.Component;
 import ru.sbp.bankfinancialprocessingsystem.dao.entity.enums.CurrencyType;
 import ru.sbp.bankfinancialprocessingsystem.dao.entity.enums.OperationType;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * Класс Transactions - POJO-класс (Plain Old Java Object) таблицы accounts
  *
- * @version 1.0
+ * @version 2.0
+ * @autor Sergey Vasiliev
  * @autor Sergey Proshchaev
  * @see
  *
  */
+@Component
 @Entity
 public class Transactions {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     @Column(name = "id")
     private int id;
-    @Basic
+
+//    @Basic
     @Column(name = "number_account")
+    @Fetch(FetchMode.SUBSELECT )
     private String numberAccount;
-    @Basic
+
+//    @Basic
     @Column(name = "date_transaction")
     private Date dateTransaction;
-    @Basic
+
+//    @Basic
     @Column(name = "operation_type")
     @Enumerated(EnumType.STRING)
     private OperationType operationType;
-    @Basic
+
+//    @Basic
     @Column(name = "sum_transaction")
     private Double sumTransaction;
-    @Basic
+//    @Basic
     @Column(name = "currency_type")
     @Enumerated(EnumType.STRING)
     private CurrencyType currencyType;
-    @Basic
+//    @Basic
     @Column(name = "terminal_id")
     private String terminalId;
-    @Basic
+//    @Basic
     @Column(name = "code_authorization")
     private String codeAuthorization;
 
