@@ -226,13 +226,7 @@ public class UserAccount {
         modelAndView.setViewName("/withdrawCash.jsp");
 
         account = repository.findByNumberAccount(numberAccount);
-//        try {
-//            account.getNumberAccount();
-//        }catch (NullPointerException e){
-//            System.out.println("no such number in db");
-//            e.fillInStackTrace();
-//            return erorr.getErorrNumberInfo();
-//        }
+        
         if(!(numberAccount == null)) {
             modelAndView.addObject("newBalance", account.getBalance());
             modelAndView.addObject("currency", account.getCurrency());
