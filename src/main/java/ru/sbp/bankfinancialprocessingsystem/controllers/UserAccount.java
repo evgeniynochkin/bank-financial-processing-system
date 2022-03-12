@@ -8,14 +8,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import ru.sbp.bankfinancialprocessingsystem.dao.entity.Account;
+import ru.sbp.bankfinancialprocessingsystem.dao.entity.Transactions;
 import ru.sbp.bankfinancialprocessingsystem.dao.entity.enums.OperationType;
 import ru.sbp.bankfinancialprocessingsystem.dao.repositories.AccountRepository;
+import ru.sbp.bankfinancialprocessingsystem.dao.repositories.TransactionsRepository;
 import ru.sbp.bankfinancialprocessingsystem.service.account.AccountService;
 import ru.sbp.bankfinancialprocessingsystem.service.account.TransactionAccount;
 import ru.sbp.bankfinancialprocessingsystem.service.account.СalculationsAccount;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.transaction.Transaction;
+import java.util.List;
 
 /**
  * @autor Sergey Vasiliev
@@ -29,6 +33,12 @@ public class UserAccount {
      */
     @Autowired
     private AccountRepository repository;
+
+    /**
+     * Связь с ентити аккаунта.
+     */
+    @Autowired
+    Account account;
 
     /**
      * вызов калькулятора
@@ -55,6 +65,12 @@ public class UserAccount {
     private AccountService service;
 
     /**
+     * Связь с bd транзакций
+     */
+    @Autowired
+    private TransactionsRepository transRepository;
+
+    /**
      * Номер счета
      */
     private String numberAccount;
@@ -69,9 +85,6 @@ public class UserAccount {
      */
     private double money;
 
-    @Autowired
-     Account account;
-
     /**
      * Отправляет информацию по наименованию клиента(name), номеру аккаунта(accountNumber),
      * активному статусу(activityStatus) и балансу счета(balance)
@@ -85,6 +98,7 @@ public class UserAccount {
         ModelAndView modelAndView = new ModelAndView();
 
         modelAndView.setViewName("/account.jsp");
+
         try {
             modelAndView.addObject("login", account.getUserLogin());
             modelAndView.addObject("accountNumber",account.getNumberAccount());
@@ -98,7 +112,7 @@ public class UserAccount {
             modelAndView.addObject("accountNumber","-");
             modelAndView.addObject("dateOpen","-" );
             modelAndView.addObject("activityStatus", "-");
-            modelAndView.addObject("balance", "-");
+            modelAndView.addObject("balance", "");
             modelAndView.addObject("currency", "-");
             return modelAndView;
         }
@@ -121,7 +135,7 @@ public class UserAccount {
 
     /**
      * Выводит информацию по счету.
-     *      Eсли номера счета нет в Базе данных, то numberAccount = null,
+     * Eсли номера счета нет в Базе данных, то numberAccount = null,
      * это нужно,чтоб когда человек вводил номера, которого нет,
      * то при возвращении на страничку /updateDeposit выходило бы
      * сообщение "Input your number the number account".
@@ -201,11 +215,11 @@ public class UserAccount {
 
     /**
      * Выводит информацию по счету.
-     *      Eсли номера счета нет в Базе данных, то numberAccount = null,
+     * Eсли номера счета нет в Базе данных, то numberAccount = null,
      * это нужно,чтоб когда человек вводил номер, которого нет,
      * то при возвращении на страничку /updateDeposit выходило бы
      * сообщение "Input your number the number account".
-     *      Если номер счета верный,то выводит информацию о счете -
+     * Если номер счета верный,то выводит информацию о счете -
      * account.getBalance().
      * @return
      */
@@ -288,7 +302,6 @@ public class UserAccount {
      * Выводит логин и новый номер счета
      * @return
      */
-
     @GetMapping(value = "/info/createAnAccount")
     public ModelAndView getInformationCreateNumberAccount() {
 
@@ -303,6 +316,7 @@ public class UserAccount {
 
     /**
      * Получаем тип счета и тип аккаунта
+     * и создаем новый счет
      * @param accountType
      * @param currency
      * @return
@@ -317,4 +331,31 @@ public class UserAccount {
 
         return this.getInformationCreateNumberAccount();
     }
+
+    /**
+     * Выводим всю информацию по транзакциям счета.
+     * @return
+     */
+    @GetMapping(value = "/info/accountStatement")
+    public ModelAndView getInformationAboutTransaction() {
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/accountStatement.jsp");
+        try {
+
+            List<Transactions> transactionList = transRepository.getInformationAboutTrans(numberAccount);
+            //вызов логина
+            modelAndView.addObject("login", "User: " + "serj");
+            modelAndView.addObject("transactionList", transactionList);
+            modelAndView.addObject("accountNumber", account.getNumberAccount());
+            modelAndView.addObject("balance", account.getBalance());
+            modelAndView.addObject("currency", account.getCurrency());
+            return modelAndView;
+        }catch (NullPointerException e){
+            System.out.println("no such number in db");
+            e.fillInStackTrace();
+            return erorr.getErorrNumberInfo();
+        }
+    }
+    //geristratioon controller
 }
