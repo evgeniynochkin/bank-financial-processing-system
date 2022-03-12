@@ -29,7 +29,7 @@ public class Card {
     private String cardNumber;
 
     @OneToOne(mappedBy = "card")
-    private Accounts numberAccount;
+    private Account numberAccount;
 
     @Column(name = "expiration_date")
     private Date expirationDate;
@@ -48,7 +48,7 @@ public class Card {
     public Card() {
     }
 
-    public Card(String cardNumber, Accounts numberAccount, Date expirationDate, String cardHolderName, PaymentSystemType paymentSystem, CardStatusType cardStatus) {
+    public Card(String cardNumber, Account numberAccount, Date expirationDate, String cardHolderName, PaymentSystemType paymentSystem, CardStatusType cardStatus) {
         this.cardNumber = cardNumber;
         this.numberAccount = numberAccount;
         this.expirationDate = expirationDate;
@@ -71,11 +71,11 @@ public class Card {
         this.cardNumber = cardNumber;
     }
 
-    public Accounts getNumberAccount() {
+    public Account getNumberAccount() {
         return numberAccount;
     }
 
-    public void setNumberAccount(Accounts numberAccount) {
+    public void setNumberAccount(Account numberAccount) {
         this.numberAccount = numberAccount;
     }
 
