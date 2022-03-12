@@ -1,12 +1,13 @@
 package ru.sbp.bankfinancialprocessingsystem.dao.entity.enums;
 
-import ru.sbp.bankfinancialprocessingsystem.dao.entity.Cards;
+
+import ru.sbp.bankfinancialprocessingsystem.dao.entity.Card;
 
 /**
  * Класс enum содержит описание значений поля в таблие cards.card_status
  * @autor Sergey Proshchaev
  * @version 1.0
- * @see Cards#Object()
+ * @see Card#Object()
  */
 public enum CardStatusType {
     Valid,

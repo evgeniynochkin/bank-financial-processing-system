@@ -7,10 +7,19 @@ import ru.sbp.bankfinancialprocessingsystem.dao.entity.enums.CurrencyType;
 import javax.persistence.*;
 import java.util.Date;
 /**
+<<<<<<< HEAD:src/main/java/ru/sbp/bankfinancialprocessingsystem/dao/entity/Accounts.java
+ * Класс Accounts - POJO-класс (Plain Old Java Object) таблицы accounts
+ *
+ * @version 1.0
+ * @autor Sergey Proshchaev, Evgeniy Nochkin
+ * @see AccountsRepository#Object()
+ *
+=======
  * Класс Accounts - POJO-класс (Plain Old Java Object) таблицы account
  * @version 2.0
  * @autor Sergey Vasiliev
  * @autor Sergey Proshchaev
+>>>>>>> 5685d2725f8edd3d5992814c5bb9599e2160a397:src/main/java/ru/sbp/bankfinancialprocessingsystem/dao/entity/Account.java
  */
 @Component
 @Entity
@@ -35,6 +44,7 @@ public class Account {
      */
 //    @Basic
     @Column(name = "user_login")
+
     private String userLogin;
 
     /**
@@ -42,6 +52,7 @@ public class Account {
      */
 //    @Basic
     @Column(name = "account_active")
+
     private Boolean accountActive;
 
     /**
@@ -49,6 +60,7 @@ public class Account {
      */
 //    @Basic
     @Column(name = "date_open")
+
     private Date dateOpen;
 
     /**
@@ -57,6 +69,7 @@ public class Account {
 //    @Basic
     @Column(name = "currency")
     @Enumerated(EnumType.STRING)
+
     private CurrencyType currency;
 
     /**
@@ -64,6 +77,7 @@ public class Account {
      */
 //    @Basic
     @Column(name = "balance")
+
     private Double balance;
     /**
      * -
@@ -71,6 +85,7 @@ public class Account {
 //    @Basic
     @Column(name = "account_type")
     @Enumerated(EnumType.STRING)
+
     private AccountType accountType;
 
     /**
@@ -78,7 +93,12 @@ public class Account {
      */
 //    @Basic
     @Column(name = "date_close")
+
     private Date dateClose;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "card_id", referencedColumnName = "card_id")
+    private Card card;
 
     /**
      * Конструктор класса
