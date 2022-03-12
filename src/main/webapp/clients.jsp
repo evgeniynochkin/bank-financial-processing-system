@@ -29,6 +29,30 @@
             body: JSON.stringify(newClient)
         });
     }
+    //Find client by FIO
+    async function findFIO(form) {
+        let newClient = {
+            "userLogin": clientForm.userLogin.value,
+            "firstName": clientForm.firstName.value,
+            "lastName": clientForm.secondName.value,
+            "middleName": clientForm.middleName.value,
+            "birthday": clientForm.birthDay.value,
+            "passport": clientForm.passport.value,
+            "passportOrg": clientForm.passportOrg.value,
+            "passportDate": clientForm.passportDate.value,
+            "email": clientForm.mail.value,
+            "phone": clientForm.telephone.value
+        };
+
+        fetch('../clients/findFIO', {
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newClient)
+        });
+    }
 </script>
 <head>
 
@@ -102,13 +126,9 @@ body {
 
                     <div class="form-group">
                         <p>
-                        <form action="../clients/all" method="GET">
-                            <button id="all" name="all" class="btn btn-default">
-                                Получить всех!
-                            </button>
-                        </form>
+
                         <fieldset>
-                                <legend>Поиск клиента по логину</legend>
+                                <legend>Поиск/удаление клиента по логину</legend>
                             <form action="../clients/find" method="GET" >
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="userLogin">Имя входа клиента</label>
@@ -134,14 +154,18 @@ body {
                             </form>
                         </fieldset>
                     </div>
-
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="delete">Удалить по логину</label>
-                        <div class="col-md-8">
-
-                        </div>
-                    </div>
-
+                    <p>
+                        <form action="../clients/all" method="GET">
+                            <button id="all" name="all" class="btn btn-default">
+                                Получить всех!
+                            </button>
+                        </form>
+                    </p>
+                    <p>
+                        <form onsubmit="findFIO()">
+                            <button type="submit"> Найти по ФИО </button>
+                        </form>
+                    </p>
                 </div>
                 <div id="content-2-2">
                     <p></p>

@@ -9,6 +9,7 @@ import ru.sbp.bankfinancialprocessingsystem.dao.repositories.ClientsRepository;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -95,9 +96,41 @@ public class MVC_Controller {
     @PostMapping("/create")
     public ModelAndView new_user(@RequestBody() Clients client){
 
-        System.out.printf(clientsRepository.save(client).toString());
         ModelAndView model = new ModelAndView();
-        model.addObject("userData",client);
+        if (client == null || client.getUserLogin().equals("")) {
+            model.addObject("message", "Нельзя зписывать клиента с пустым логином!");
+        } else {
+            System.out.printf(clientsRepository.save(client).toString());
+            model.addObject("userData", client);
+        }
+        model.setViewName("/clients.jsp");
+        return model;
+    }
+    @PutMapping("/findFIO")
+    public ModelAndView find_fio(@RequestBody() Clients user) {
+
+        ModelAndView model = new ModelAndView();
+        if (user == null) {
+            model.addObject("message", "Нельзя зписывать клиента с пустым логином!");
+        } else {
+            List<Clients> clientsList = new ArrayList<>();
+            for (Clients usr: clientsRepository.findAll()) {
+                if (usr.getFirstName().equals(user.getFirstName())
+                        &&usr.getLastName().equals(user.getLastName())
+                        &&usr.getMiddleName().equals(user.getMiddleName()))
+                {
+                    clientsList.add(usr);
+                }
+            }
+            if (clientsList.size() == 0){
+                model.addObject("message", "Клиентов с данным фио не найдено в базе данных!");
+            } else if (clientsList.size() > 1){
+                model.addObject("message", "Клиентов с данным фио найдено больше одного!");
+            } else {
+                model.addObject("message", "Найден один пользователь!");
+                model.addObject("userData", clientsList.get(0));
+            }
+        }
         model.setViewName("/clients.jsp");
         return model;
     }
