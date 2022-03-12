@@ -16,9 +16,6 @@ import ru.sbp.bankfinancialprocessingsystem.service.account.AccountService;
 import ru.sbp.bankfinancialprocessingsystem.service.account.TransactionAccount;
 import ru.sbp.bankfinancialprocessingsystem.service.account.СalculationsAccount;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.transaction.Transaction;
 import java.util.List;
 
 /**
@@ -191,7 +188,6 @@ public class UserAccount {
         }else {
             money = Double.parseDouble(moneyString);
         }
-        //убрать попробовать
         account = repository.findByNumberAccount(numberAccount);
         сalculations.setNewBalanceAndNumberAccount(money,numberAccount);
 
@@ -230,23 +226,33 @@ public class UserAccount {
         modelAndView.setViewName("/withdrawCash.jsp");
 
         account = repository.findByNumberAccount(numberAccount);
-
-        if (сalculations.getNewBalance() < 0){
-
-            modelAndView.addObject("newBalance", сalculations.getOldBalance());
-            modelAndView.addObject("errorBalance", "Mistake! insufficient funds in the account.");
-            return modelAndView;
-        }
-        if((account = repository.findByNumberAccount(numberAccount)) == null){
-            this.numberAccount = null;
-        }
+//        try {
+//            account.getNumberAccount();
+//        }catch (NullPointerException e){
+//            System.out.println("no such number in db");
+//            e.fillInStackTrace();
+//            return erorr.getErorrNumberInfo();
+//        }
         if(!(numberAccount == null)) {
             modelAndView.addObject("newBalance", account.getBalance());
             modelAndView.addObject("currency", account.getCurrency());
         }else {
             modelAndView.addObject("newBalance",
                     "Input your number the number account");
+            return modelAndView;
+
         }
+        if (сalculations.getNewBalance() < 0){
+
+            modelAndView.addObject("newBalance", сalculations.getOldBalance());
+            modelAndView.addObject("currency", account.getCurrency());
+            modelAndView.addObject("errorBalance", "Mistake! insufficient funds in the account.");
+            return modelAndView;
+        }
+        if((account = repository.findByNumberAccount(numberAccount)) == null){
+            this.numberAccount = null;
+        }
+
 
         return modelAndView;
     }
@@ -357,5 +363,4 @@ public class UserAccount {
             return erorr.getErorrNumberInfo();
         }
     }
-    //geristratioon controller
 }

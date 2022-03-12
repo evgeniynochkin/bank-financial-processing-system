@@ -28,7 +28,7 @@
  <form action="/account/info/withdrawCash" method="get">
 	 <input type="submit" value="Withdraw cash">
  </form>
-<form action="/accountStatement" method="get">
+<form action="/account/info/accountStatement" method="get">
        <button>Account statement</button>
 </form>
 
