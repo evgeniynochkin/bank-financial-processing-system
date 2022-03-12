@@ -55,7 +55,7 @@ public class Clients {
 
     /**
      * Конструктор класса с параметрами
-     *
+     *  @GeneratedValue(strategy = GenerationType.IDENTITY)
      * @param - String userLogin логин
      * @param - String firstName имя
      * @param - String middleName отчество

@@ -16,6 +16,11 @@ import ru.sbp.bankfinancialprocessingsystem.service.CardService;
  *
  */
 
+/**
+ * @author Konstantin Filin
+ */
+
+
 @SpringBootApplication
 public class BankFinancialProcessingSystemApplication {
 
