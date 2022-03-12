@@ -7,8 +7,11 @@ import ru.sbp.bankfinancialprocessingsystem.dao.entity.enums.CurrencyType;
 import ru.sbp.bankfinancialprocessingsystem.dao.entity.enums.OperationType;
 import ru.sbp.bankfinancialprocessingsystem.dao.repositories.TransactionsRepository;
 
-import java.util.Date;
 
+/**
+ * Сервис для записи транзакций.
+ * @autor Sergey Vasiliev
+ */
 @Service
 public class TransactionAccount {
 
@@ -60,7 +63,7 @@ public class TransactionAccount {
      * @return
      */
     public boolean createNewAccount() {
-        Date date = new Date();
+        java.sql.Date date = new java.sql.Date(new java.util.Date().getTime());
         transactions.setId(Integer.valueOf(generated.getNumberTerminalId()));
         transactions.setNumberAccount(numberAccount);
         transactions.setSumTransaction(sumTransaction);

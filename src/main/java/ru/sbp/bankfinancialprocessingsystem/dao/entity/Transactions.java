@@ -27,31 +27,48 @@ public class Transactions {
     @Column(name = "id")
     private int id;
 
-//    @Basic
+    /**
+     * Номер аккаунта
+     */
     @Column(name = "number_account")
     @Fetch(FetchMode.SUBSELECT )
     private String numberAccount;
 
-//    @Basic
+    /**
+     * Дата транзакции
+     */
     @Column(name = "date_transaction")
-    private Date dateTransaction;
+    private java.sql.Date dateTransaction;
 
-//    @Basic
+    /**
+     * Тип операции
+     */
     @Column(name = "operation_type")
     @Enumerated(EnumType.STRING)
     private OperationType operationType;
 
-//    @Basic
+    /**
+     * Сумма транзакций
+     */
     @Column(name = "sum_transaction")
     private Double sumTransaction;
-//    @Basic
+
+    /**
+     * Тип валюты
+     */
     @Column(name = "currency_type")
     @Enumerated(EnumType.STRING)
     private CurrencyType currencyType;
-//    @Basic
+
+    /**
+     * id терминала
+     */
     @Column(name = "terminal_id")
     private String terminalId;
-//    @Basic
+
+    /**
+     * код авторизации
+     */
     @Column(name = "code_authorization")
     private String codeAuthorization;
 
@@ -67,14 +84,14 @@ public class Transactions {
      *
      * @param - int id
      * @param - String numberAccount
-     * @param - Date dateTransaction
+     * @param - java.sql.Date dateTransaction
      * @param - OperationType operationType
      * @param - Double sumTransaction
      * @param - CurrencyType currencyType
      * @param - String terminalId
      * @param - String codeAuthorization
      */
-    public Transactions(int id, String numberAccount, Date dateTransaction, OperationType operationType, Double sumTransaction, CurrencyType currencyType, String terminalId, String codeAuthorization) {
+    public Transactions(int id, String numberAccount, java.sql.Date dateTransaction, OperationType operationType, Double sumTransaction, CurrencyType currencyType, String terminalId, String codeAuthorization) {
         this.id = id;
         this.numberAccount = numberAccount;
         this.dateTransaction = dateTransaction;
@@ -101,11 +118,11 @@ public class Transactions {
         this.numberAccount = numberAccount;
     }
 
-    public Date getDateTransaction() {
+    public java.sql.Date getDateTransaction() {
         return dateTransaction;
     }
 
-    public void setDateTransaction(Date dateTransaction) {
+    public void setDateTransaction(java.sql.Date dateTransaction) {
         this.dateTransaction = dateTransaction;
     }
 
@@ -149,6 +166,11 @@ public class Transactions {
         this.codeAuthorization = codeAuthorization;
     }
 
+    /**
+     * Сравниваем данные транзакций с помощью equals, если они равны то вернется true ,если нет то false.
+     * @param o
+     * @return
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -173,6 +195,10 @@ public class Transactions {
         return true;
     }
 
+    /**
+     * Сравниваем данные транзакций с помощью hashCode, если они равны то вернется true ,если нет то false.
+     * @return
+     */
     @Override
     public int hashCode() {
         int result = id;
@@ -186,6 +212,10 @@ public class Transactions {
         return result;
     }
 
+    /**
+     * Выводим всю информацию по транзакциям
+     * @return
+     */
     @Override
     public String toString() {
         return "Transactions{" +
