@@ -32,7 +32,7 @@
 <form action="/account/info/accountStatement" method="get">
        <button>Account statement</button>
 </form>
-<form action="/Евгений" method="get">
+<form action="/card/info" method="get">
 	<button>Creat card</button>
 </form>
 
