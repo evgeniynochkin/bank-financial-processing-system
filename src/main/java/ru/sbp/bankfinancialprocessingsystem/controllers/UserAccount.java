@@ -103,8 +103,10 @@ public class UserAccount {
         if(newNumber == null) {
             try {
                 List<Account> listAcc = repository.findByUserLogin(userLogin);
-                account = listAcc.get(0);
-                account.getNumberAccount();
+               if (listAcc.size() != 0) {
+                   account = listAcc.get(0);
+                   account.getNumberAccount();
+               }
             } catch (NullPointerException e) {
                 return this.getInformationCreateNumberAccount();
             }
