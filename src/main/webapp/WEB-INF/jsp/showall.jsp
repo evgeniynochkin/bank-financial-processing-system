@@ -22,36 +22,40 @@
 .button24:hover { background: linear-gradient(#f5ae00, #f59500) #f5ae00; }
 .button24:active { background: linear-gradient(#f59500, #f5ae00) #f59500; }
 </style>
-<h1>All users: ${todaydata}</h1>
-<table border="1" width="1500"> <!-- Задаём границу в 1 пиксель и ширину в 300 пикселей -->
-   <tr bgcolor="Gainsboro">  <!-- Задаём цвет ячеек для всей первой строки -->
-                    <td>Login</td>
-                    <td>Name</td>
-                    <td>middleName<br>
-                    <td>lastName</td>
-                    <td>birthday</td>
-                    <td>passport</td>
-                    <td>passportOrg</td>
-                    <td>passportDate</td>
-                    <td>email</td>
-                    <td>phone</td>
-   </tr>
-   <c:forEach items="${userList}" var="user">
-   <tr>
-               <td>${user.userLogin}</td>
-               <td>${user.firstName}</td>
-               <td>${user.middleName}<br>
-               <td>${user.lastName}</td>
-               <td>${user.birthday}</td>
-               <td>${user.passport}</td>
-               <td>${user.passportOrg}</td>
-               <td>${user.passportDate}</td>
-               <td>${user.email}</td>
-               <td>${user.phone}</td>
-   </tr>
-   </c:forEach>
+    <form>
+        <h1>All users: ${todaydata}</h1>
+        <table border="1" width="1500"> <!-- Задаём границу в 1 пиксель и ширину в 300 пикселей -->
+           <tr bgcolor="Gainsboro">  <!-- Задаём цвет ячеек для всей первой строки -->
+                            <td>Login</td>
+                            <td>Name</td>
+                            <td>middleName<br>
+                            <td>lastName</td>
+                            <td>birthday</td>
+                            <td>passport</td>
+                            <td>passportOrg</td>
+                            <td>passportDate</td>
+                            <td>email</td>
+                            <td>phone</td>
+                            <td>operation</td>
+           </tr>
+           <c:forEach items="${userList}" var="user">
+           <tr>
+                       <td>${user.userLogin}</td>
+                       <td>${user.firstName}</td>
+                       <td>${user.middleName}<br>
+                       <td>${user.lastName}</td>
+                       <td>${user.birthday}</td>
+                       <td>${user.passport}</td>
+                       <td>${user.passportOrg}</td>
+                       <td>${user.passportDate}</td>
+                       <td>${user.email}</td>
+                       <td>${user.phone}</td>
+                       <td><input formaction="/account/info" formmethod="get" type="submit" value="${user.userLogin}"></td>
+           </tr>
+           </c:forEach>
 
-</table>
-    <a href="/afterlogin" class="button24">Go back</a> <a href="/logout" class="button24">Logout</a>
+        </table>
+            <a href="/afterlogin" class="button24">Go back</a> <a href="/logout" class="button24">Logout</a>
+    </form>
 </body>
 </html>
