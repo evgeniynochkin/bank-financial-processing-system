@@ -135,7 +135,7 @@ public class UserAccount {
             System.out.println("no such number in db");
             return erorr.getErorrNumberInfo();
         }
-        return this.getInformationAboutCheck();
+//        return this.getInformationAboutCheck();
     }
 
     /**
