@@ -89,7 +89,7 @@ public class UserAccount {
      * @return
      */
     @GetMapping(value = "/info")
-    public ModelAndView getInformationAboutCheck() {
+    public ModelAndView getInformationAboutCheck( @RequestParam("user.userLogin") String numberAccount) {
 
         account = repository.findByNumberAccount(numberAccount);
         ModelAndView modelAndView = new ModelAndView();
