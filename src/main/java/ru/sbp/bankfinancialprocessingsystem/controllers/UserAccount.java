@@ -67,6 +67,18 @@ public class UserAccount {
     @Autowired
     private TransactionsRepository transRepository;
 
+//    /**
+//     * Связь с bd транзакций
+//     */
+//    @Autowired
+//    private CardsRepository cardsRepository;
+//
+//    /**
+//     * Cвязь с ентити карты
+//     */
+//    @Autowired
+//    private Card card;
+
     /**
      * Номер счета
      */
@@ -94,7 +106,7 @@ public class UserAccount {
         account = repository.findByNumberAccount(numberAccount);
         ModelAndView modelAndView = new ModelAndView();
 
-        modelAndView.setViewName("/account.jsp");
+        modelAndView.setViewName("account/account.jsp");
 
         try {
             modelAndView.addObject("login", account.getUserLogin());
@@ -103,7 +115,15 @@ public class UserAccount {
             modelAndView.addObject("activityStatus", account.getAccountActive());
             modelAndView.addObject("balance", account.getBalance());
             modelAndView.addObject("currency", account.getCurrency());
-            return modelAndView;
+            try{
+
+                String cardNumber = account.getCard().getCardNumber();
+                modelAndView.addObject("card", cardNumber );
+                return modelAndView;
+            }catch (NullPointerException e){
+                modelAndView.addObject("card", "-" );
+                return modelAndView;
+            }
         }catch (NullPointerException e){
             modelAndView.addObject("login","-");
             modelAndView.addObject("accountNumber","-");
@@ -147,7 +167,7 @@ public class UserAccount {
     public ModelAndView getInformationDepositCash() {
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/depositMoney.jsp");
+        modelAndView.setViewName("account/depositMoney.jsp");
 
         if((account = repository.findByNumberAccount(numberAccount)) == null){
             this.numberAccount = null;
@@ -223,10 +243,10 @@ public class UserAccount {
     public ModelAndView getInformationWithdrawСash () {
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/withdrawCash.jsp");
+        modelAndView.setViewName("account/withdrawCash.jsp");
 
         account = repository.findByNumberAccount(numberAccount);
-        
+
         if(!(numberAccount == null)) {
             modelAndView.addObject("newBalance", account.getBalance());
             modelAndView.addObject("currency", account.getCurrency());
@@ -306,7 +326,7 @@ public class UserAccount {
     public ModelAndView getInformationCreateNumberAccount() {
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/createsAnAccount.jsp");
+        modelAndView.setViewName("account/createsAnAccount.jsp");
         //вызов логина
         modelAndView.addObject("login","User: " + "serj");
         modelAndView.addObject("accountNumber","Number account: " + newNumber);
@@ -340,7 +360,7 @@ public class UserAccount {
     public ModelAndView getInformationAboutTransaction() {
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/accountStatement.jsp");
+        modelAndView.setViewName("account/accountStatement.jsp");
         try {
 
             List<Transactions> transactionList = transRepository.getInformationAboutTrans(numberAccount);

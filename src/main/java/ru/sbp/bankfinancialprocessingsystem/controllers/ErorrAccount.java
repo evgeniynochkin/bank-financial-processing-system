@@ -21,7 +21,7 @@ public class ErorrAccount {
     public ModelAndView getErorrNumberInfo() {
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/erorrNumber.jsp");
+        modelAndView.setViewName("account/erorrNumber.jsp");
         return modelAndView;
     }
 }

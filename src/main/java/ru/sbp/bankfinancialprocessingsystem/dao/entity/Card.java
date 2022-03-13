@@ -1,5 +1,6 @@
 package ru.sbp.bankfinancialprocessingsystem.dao.entity;
 
+import org.springframework.stereotype.Component;
 import ru.sbp.bankfinancialprocessingsystem.dao.entity.enums.CardStatusType;
 import ru.sbp.bankfinancialprocessingsystem.dao.entity.enums.PaymentSystemType;
 import ru.sbp.bankfinancialprocessingsystem.dao.repositories.CardsRepository;
@@ -16,6 +17,7 @@ import java.util.Objects;
  * @see CardsRepository#Object()
  *
  */
+@Component
 @Entity
 @Table(name = "cards")
 public class Card {
