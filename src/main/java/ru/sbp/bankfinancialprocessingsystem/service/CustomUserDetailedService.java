@@ -1,12 +1,12 @@
 package ru.sbp.bankfinancialprocessingsystem.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.security.core.GrantedAuthority;
-//import org.springframework.security.core.authority.SimpleGrantedAuthority;
-//import org.springframework.security.core.userdetails.User;
-//import org.springframework.security.core.userdetails.UserDetails;
-//import org.springframework.security.core.userdetails.UserDetailsService;
-//import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import ru.sbp.bankfinancialprocessingsystem.dao.entity.Clients;
 import ru.sbp.bankfinancialprocessingsystem.dao.entity.GlobalUser;
@@ -25,8 +25,8 @@ import java.util.Optional;
 
 
 @Component
-//public class CustomUserDetailedService implements UserDetailsService {
-public class CustomUserDetailedService {
+public class CustomUserDetailedService implements UserDetailsService {
+//public class CustomUserDetailedService {
 
     @Autowired
     GlobalUserRepository globalUserRepository;
@@ -35,16 +35,16 @@ public class CustomUserDetailedService {
     ClientsRepository clientsRepository;
 
 
-//    @Override
-//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//        Optional<GlobalUser> optionalGlobalUser = globalUserRepository.findById(username);
-//        if (!optionalGlobalUser.isPresent()) {
-//            throw new UsernameNotFoundException("User id = " + username + " not found.");
-//        }
-//        Collection<GrantedAuthority> authorities = new ArrayList<>();
-//        authorities.add(new SimpleGrantedAuthority("ROLE_" + optionalGlobalUser.get().getUserRole()));
-//        return new User(optionalGlobalUser.get().getUserLogin(), optionalGlobalUser.get().getUserPassword(), authorities);
-//    }
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Optional<GlobalUser> optionalGlobalUser = globalUserRepository.findById(username);
+        if (!optionalGlobalUser.isPresent()) {
+            throw new UsernameNotFoundException("User id = " + username + " not found.");
+        }
+        Collection<GrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority("ROLE_" + optionalGlobalUser.get().getUserRole()));
+        return new User(optionalGlobalUser.get().getUserLogin(), optionalGlobalUser.get().getUserPassword(), authorities);
+    }
 
 
     public List<Clients> allUsers() {

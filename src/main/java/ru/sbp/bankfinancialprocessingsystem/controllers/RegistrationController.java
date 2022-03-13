@@ -1,8 +1,8 @@
 package ru.sbp.bankfinancialprocessingsystem.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.security.core.Authentication;
-//import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -82,8 +82,8 @@ public class RegistrationController {
     @GetMapping("/afterlogin")
     public ModelAndView afterlogin(){
         ModelAndView modelAndView = new ModelAndView();
-//        String userlogin = getCurrentUsername();
-        String userlogin = "Admin";
+        String userlogin = getCurrentUsername();
+//        String userlogin = "Admin";
         GlobalUser globalUser = detailedService.getGlobalUser(userlogin);
 
          if(globalUser == null) {
@@ -98,10 +98,10 @@ public class RegistrationController {
         return modelAndView;
     }
 
-//    public String getCurrentUsername() {
-//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//        return auth.getName();
-//    }
+    public String getCurrentUsername() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        return auth.getName();
+    }
 
 
 
