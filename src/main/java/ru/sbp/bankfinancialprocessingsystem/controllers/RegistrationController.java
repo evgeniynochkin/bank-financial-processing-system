@@ -83,7 +83,6 @@ public class RegistrationController {
     public ModelAndView afterlogin(){
         ModelAndView modelAndView = new ModelAndView();
         String userlogin = getCurrentUsername();
-//        String userlogin = "Admin";
         GlobalUser globalUser = detailedService.getGlobalUser(userlogin);
 
          if(globalUser == null) {
