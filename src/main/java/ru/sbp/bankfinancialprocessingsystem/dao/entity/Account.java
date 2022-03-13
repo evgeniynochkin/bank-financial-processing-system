@@ -5,21 +5,12 @@ import ru.sbp.bankfinancialprocessingsystem.dao.entity.enums.AccountType;
 import ru.sbp.bankfinancialprocessingsystem.dao.entity.enums.CurrencyType;
 
 import javax.persistence.*;
-import java.util.Date;
+
 /**
-<<<<<<< HEAD:src/main/java/ru/sbp/bankfinancialprocessingsystem/dao/entity/Accounts.java
- * Класс Accounts - POJO-класс (Plain Old Java Object) таблицы accounts
- *
- * @version 1.0
- * @autor Sergey Proshchaev, Evgeniy Nochkin
- * @see AccountsRepository#Object()
- *
-=======
- * Класс Accounts - POJO-класс (Plain Old Java Object) таблицы account
  * @version 2.0
  * @autor Sergey Vasiliev
  * @autor Sergey Proshchaev
->>>>>>> 5685d2725f8edd3d5992814c5bb9599e2160a397:src/main/java/ru/sbp/bankfinancialprocessingsystem/dao/entity/Account.java
+ * @autor Evgeniy Nochkin
  */
 @Component
 @Entity
@@ -42,60 +33,52 @@ public class Account {
     /**
      * Логин пользователя
      */
-//    @Basic
     @Column(name = "user_login")
-
     private String userLogin;
 
     /**
      * Активный ли аккаунт
      */
-//    @Basic
     @Column(name = "account_active")
-
     private Boolean accountActive;
 
     /**
      * Дата открытия
      */
-//    @Basic
     @Column(name = "date_open")
-
-    private Date dateOpen;
+    private java.sql.Date dateOpen;
 
     /**
-     * -
+     * Тип валюты
      */
-//    @Basic
     @Column(name = "currency")
     @Enumerated(EnumType.STRING)
-
     private CurrencyType currency;
 
     /**
      * Количество валюты в рублях
      */
-//    @Basic
     @Column(name = "balance")
-
     private Double balance;
+
     /**
-     * -
+     * Тип аккаунта
      */
-//    @Basic
     @Column(name = "account_type")
     @Enumerated(EnumType.STRING)
 
     private AccountType accountType;
 
     /**
-     * -
+     * Дата закрытия
      */
-//    @Basic
     @Column(name = "date_close")
 
-    private Date dateClose;
+    private java.sql.Date dateClose;
 
+    /**
+     * Связанный ийди карты.
+     */
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "card_id", referencedColumnName = "card_id")
     private Card card;
@@ -112,13 +95,13 @@ public class Account {
      * @param - String numberAccount номер счета 20 знаков
      * @param - String userLogin логин пользователя
      * @param - Boolean accountActive признак отсутствия ограничений по счету
-     * @param - Date dateOpen дата открытия
+     * @param - java.sql.Date dateOpen дата открытия
      * @param - CurrencyType currency валюта счета
      * @param - Double balance исходящий остаток
      * @param - AccountType accountType тип счета
-     * @param - Date dateClose дата закрытия счета
+     * @param - java.sql.Date dateClose дата закрытия счета
      */
-    public Account(String numberAccount, String userLogin, Boolean accountActive, Date dateOpen, CurrencyType currency, Double balance, AccountType accountType, Date dateClose) {
+    public Account(String numberAccount, String userLogin, Boolean accountActive, java.sql.Date dateOpen, CurrencyType currency, Double balance, AccountType accountType, java.sql.Date dateClose) {
         this.numberAccount = numberAccount;
         this.userLogin = userLogin;
         this.accountActive = accountActive;
@@ -170,7 +153,7 @@ public class Account {
     }
 
     /**
-     * -
+     * Присваиваем активность
      * @param accountActive
      */
     public void setAccountActive(Boolean accountActive) {
@@ -181,7 +164,7 @@ public class Account {
      * Отправляем дату открытия.
      * @return
      */
-    public Date getDateOpen() {
+    public java.sql.Date getDateOpen() {
         return dateOpen;
     }
 
@@ -189,12 +172,12 @@ public class Account {
      * Присваиваем дату открытия
      * @param dateOpen
      */
-    public void setDateOpen(Date dateOpen) {
+    public void setDateOpen(java.sql.Date dateOpen) {
         this.dateOpen = dateOpen;
     }
 
     /**
-     * -
+     * отправляем тип валюты
      * @return
      */
     public CurrencyType getCurrency() {
@@ -202,7 +185,7 @@ public class Account {
     }
 
     /**
-     * -
+     * присваиваем тип валюты
      * @param currency
      */
     public void setCurrency(CurrencyType currency) {
@@ -226,7 +209,7 @@ public class Account {
     }
 
     /**
-     * -
+     * Высылаем тип аккаунта
      * @return
      */
     public AccountType getAccountType() {
@@ -234,7 +217,7 @@ public class Account {
     }
 
     /**
-     * -
+     * Присваиваем тип аккаунта
      * @param accountType
      */
     public void setAccountType(AccountType accountType) {
@@ -242,23 +225,39 @@ public class Account {
     }
 
     /**
-     * -
+     * Высылаем дату закрытия
      * @return
      */
-    public Date getDateClose() {
+    public java.sql.Date getDateClose() {
         return dateClose;
     }
 
     /**
-     *
+     * Приравниваем дату закрытия
      * @param dateClose
      */
-    public void setDateClose(Date dateClose) {
+    public void setDateClose(java.sql.Date dateClose) {
         this.dateClose = dateClose;
     }
 
     /**
-     * --
+     * Вызываем id карты
+     * @return
+     */
+    public Card getCard() {
+        return card;
+    }
+
+    /**
+     * Вызываем id карты
+     * @return
+     */
+    public void setCard(Card card) {
+        this.card = card;
+    }
+
+    /**
+     * Сравниваем данные аккаунта с помощью equals, если они равны то вернется true ,если нет то false.
      * @param o
      * @return
      */
@@ -285,7 +284,7 @@ public class Account {
     }
 
     /**
-     * ---
+     * Сравниваем данные аккаунта с помощью hashCode, если они равны то вернется true ,если нет то false.
      * @return
      */
     @Override

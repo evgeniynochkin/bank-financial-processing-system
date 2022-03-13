@@ -8,10 +8,11 @@
 <form action="/account/info" method="get">
     	User: ${login}<br>
     	Account number: ${accountNumber} <br>
+		Card number: ${card}<br>
     	Data open: ${dateOpen} <br>
         Activity status: ${activityStatus}<br>
         Balance: ${balance} ${currency}<br>
-    	</form>
+</form>
 <br>
 <form action="/account/info" method="post">
 	Input the number account:<br>
@@ -28,8 +29,11 @@
  <form action="/account/info/withdrawCash" method="get">
 	 <input type="submit" value="Withdraw cash">
  </form>
-<form action="/accountStatement" method="get">
+<form action="/account/info/accountStatement" method="get">
        <button>Account statement</button>
+</form>
+<form action="/Евгений" method="get">
+	<button>Creat card</button>
 </form>
 
 	<br>

@@ -5,7 +5,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import ru.sbp.bankfinancialprocessingsystem.dao.entity.Transactions;
 
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -23,7 +22,8 @@ public interface TransactionsRepository extends  JpaRepository<Transactions, Str
     Transactions findByCodeAuthorization (String codeAuthorization);
 
     Transactions findAllByNumberAccount (String numberAccount);
-//    @Query("select e from StudentEntity e where e.courseNumber in :courses" )
-//    List<StudentEntity> getStudentBySingleCourse(@Param("courses") Collection<Integer> cList);
+
+    @Query("select e from Transactions e where e.numberAccount in :number_account" )
+    List<Transactions> getInformationAboutTrans(@Param("number_account") String number);
 
 }
