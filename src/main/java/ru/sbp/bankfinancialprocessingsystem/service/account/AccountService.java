@@ -28,6 +28,8 @@ public class AccountService {
      */
     private String accountType;
 
+    private String userLogin;
+
     /**
      * Связь с репозеторием db.
      */
@@ -58,9 +60,10 @@ public class AccountService {
      * @param currency
      * @param accountType
      */
-    public void setInformation (String currency, String accountType){
+    public void setInformation (String currency, String accountType, String userLogin){
         this.currency = currency;
         this.accountType = accountType;
+        this.userLogin = userLogin;
     }
 
     /**
@@ -69,7 +72,7 @@ public class AccountService {
      */
     public String createNewAccount() {
         java.sql.Date date = new java.sql.Date(new java.util.Date().getTime());
-
+        account = new Account();
         int numberOfVariations = 2;
         String []  a = new String[numberOfVariations];
         a[0] = "1";
@@ -89,7 +92,7 @@ public class AccountService {
         }
         account.setDateOpen(date);
         //вызов узер логин
-        account.setUserLogin("ser");
+        account.setUserLogin(userLogin);
         repository.save(account);
         return newNumber;
     }
