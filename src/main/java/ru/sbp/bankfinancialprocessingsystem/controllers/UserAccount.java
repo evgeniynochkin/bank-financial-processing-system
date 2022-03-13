@@ -67,18 +67,6 @@ public class UserAccount {
     @Autowired
     private TransactionsRepository transRepository;
 
-//    /**
-//     * Связь с bd транзакций
-//     */
-//    @Autowired
-//    private CardsRepository cardsRepository;
-//
-//    /**
-//     * Cвязь с ентити карты
-//     */
-//    @Autowired
-//    private Card card;
-
     /**
      * Номер счета
      */
