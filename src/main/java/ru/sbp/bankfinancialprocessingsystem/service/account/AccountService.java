@@ -11,7 +11,7 @@ import ru.sbp.bankfinancialprocessingsystem.dao.repositories.AccountRepository;
 import java.util.Date;
 
 /**
- * Сервис дляоткрытия счета.
+ * Сервис для открытия счета.
  * @autor Sergey Vasiliev
  */
 @Service
@@ -68,7 +68,7 @@ public class AccountService {
      * @return
      */
     public String createNewAccount() {
-        Date date = new Date();
+        java.sql.Date date = new java.sql.Date(new java.util.Date().getTime());
 
         int numberOfVariations = 2;
         String []  a = new String[numberOfVariations];
