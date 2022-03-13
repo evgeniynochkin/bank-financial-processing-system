@@ -241,6 +241,22 @@ public class Account {
     }
 
     /**
+     * Вызываем id карты
+     * @return
+     */
+    public Card getCard() {
+        return card;
+    }
+
+    /**
+     * Вызываем id карты
+     * @return
+     */
+    public void setCard(Card card) {
+        this.card = card;
+    }
+
+    /**
      * Сравниваем данные аккаунта с помощью equals, если они равны то вернется true ,если нет то false.
      * @param o
      * @return
