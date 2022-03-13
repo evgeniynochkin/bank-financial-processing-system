@@ -2,10 +2,7 @@ package ru.sbp.bankfinancialprocessingsystem.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import ru.sbp.bankfinancialprocessingsystem.dao.entity.Account;
 import ru.sbp.bankfinancialprocessingsystem.dao.entity.Transactions;
@@ -16,6 +13,7 @@ import ru.sbp.bankfinancialprocessingsystem.service.account.AccountService;
 import ru.sbp.bankfinancialprocessingsystem.service.account.TransactionAccount;
 import ru.sbp.bankfinancialprocessingsystem.service.account.СalculationsAccount;
 
+import javax.websocket.server.PathParam;
 import java.util.List;
 
 /**
@@ -88,8 +86,10 @@ public class UserAccount {
      * активнаяя ссылка http://localhost:8080/infoAccount
      * @return
      */
-    @GetMapping(value = "/info")
-    public ModelAndView getInformationAboutCheck() {
+    @GetMapping(value = "/info/{userLogin}")
+    public ModelAndView getInformationAboutCheck(@PathVariable(value = "userLogin") String userLogin) {
+
+        System.out.println(userLogin);
 
         account = repository.findByNumberAccount(numberAccount);
         ModelAndView modelAndView = new ModelAndView();
@@ -123,20 +123,20 @@ public class UserAccount {
         }
     }
 
-    @PostMapping(value = "/info")
-    public ModelAndView updateInformation(
-            @RequestParam("numberAccount") String numberAccount){
-
-        this.numberAccount = numberAccount;
-        account = repository.findByNumberAccount(numberAccount);
-        try {
-            account.getNumberAccount();
-        }catch (NullPointerException e){
-            System.out.println("no such number in db");
-            return erorr.getErorrNumberInfo();
-        }
-        return this.getInformationAboutCheck();
-    }
+//    @PostMapping(value = "/info")
+//    public ModelAndView updateInformation(
+//            @RequestParam("numberAccount") String numberAccount){
+//
+//        this.numberAccount = numberAccount;
+//        account = repository.findByNumberAccount(numberAccount);
+//        try {
+//            account.getNumberAccount();
+//        }catch (NullPointerException e){
+//            System.out.println("no such number in db");
+//            return erorr.getErorrNumberInfo();
+//        }
+//        return this.getInformationAboutCheck();
+//    }
 
     /**
      * Выводит информацию по счету.
