@@ -1,19 +1,19 @@
-package ru.sbp.bankfinancialprocessingsystem.service;
-
-import org.springframework.beans.factory.annotation.Autowired;
+//package ru.sbp.bankfinancialprocessingsystem.service;
+//
+//import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.core.GrantedAuthority;
 //import org.springframework.security.core.authority.SimpleGrantedAuthority;
 //import org.springframework.security.core.userdetails.User;
 //import org.springframework.security.core.userdetails.UserDetails;
 //import org.springframework.security.core.userdetails.UserDetailsService;
 //import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
-import java.util.Collection;
-
+//import org.springframework.stereotype.Component;
+//
+//import java.util.ArrayList;
+//import java.util.Collection;
+//
 //@Component
-//public class PosCustomUserDetailedService implements UserDetailsService {
+//public class PosCustomUserDetailedService implements UserDetailsService { //implements UserDetailsService
 //
 //    private PosUserCache userCache;
 //
