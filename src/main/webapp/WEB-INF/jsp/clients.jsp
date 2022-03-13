@@ -20,7 +20,31 @@
             "phone": clientForm.telephone.value
         };
 
-        fetch('../clients/main', {
+        fetch('../clients/create', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newClient)
+        });
+    }
+    //Find client by FIO
+    async function findFIO(form) {
+        let newClient = {
+            "userLogin": clientForm.userLogin.value,
+            "firstName": clientForm.firstName.value,
+            "lastName": clientForm.secondName.value,
+            "middleName": clientForm.middleName.value,
+            "birthday": clientForm.birthDay.value,
+            "passport": clientForm.passport.value,
+            "passportOrg": clientForm.passportOrg.value,
+            "passportDate": clientForm.passportDate.value,
+            "email": clientForm.mail.value,
+            "phone": clientForm.telephone.value
+        };
+
+        fetch('../clients/find_fio', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json, text/plain, */*',
@@ -102,13 +126,9 @@ body {
 
                     <div class="form-group">
                         <p>
-                        <form action="../clients/all" method="GET">
-                            <button id="all" name="all" class="btn btn-default">
-                                Получить всех!
-                            </button>
-                        </form>
+
                         <fieldset>
-                                <legend>Поиск клиента по логину</legend>
+                                <legend>Поиск/удаление клиента по логину</legend>
                             <form action="../clients/find" method="GET" >
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="userLogin">Имя входа клиента</label>
@@ -121,7 +141,7 @@ body {
 
                                 </P>
                             </form>
-                            <form action="../clients/delete" method="DELETE" >
+                            <form action="../clients/main" method="POST" >
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="userLogin">Имя входа клиента</label>
                                     <div class="col-md-4">
@@ -135,12 +155,46 @@ body {
                         </fieldset>
                     </div>
 
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="delete">Удалить по логину</label>
-                        <div class="col-md-8">
+                    <p>
 
-                        </div>
-                    </div>
+                    <fieldset>
+                        <legend>Поиск клиента по ФИО</legend>
+                            <form action="../clients/find_fio" method="GET" >
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="firstName">Имя </label>
+                                    <div class="col-md-4">
+                                        <input id="irstName" name="firstName" type="input" placeholder="Имя" class="form-control input-md" value="${userData.firstName}"> [NN]
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="secondName">Фамилия </label>
+                                    <div class="col-md-4">
+                                        <input id="econdName" name="secondName" type="input" placeholder="Фамилия" class="form-control input-md"  value="${userData.lastName}"> [NN]
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="middleName">Отчество</label>
+                                    <div class="col-md-4">
+                                        <input id="iddleName" name="middleName" type="input" placeholder="Отчество" class="form-control input-md" value="${userData.middleName}">
+
+                                    </div>
+                                </div>
+
+                                <p><button type="submit"> Найти по ФИО </button></p>
+                            </form>
+                    </fieldset>
+                    </p>
+                    <p>
+                        <form action="../clients/all" method="GET">
+                            <button id="all" name="all" class="btn btn-default">
+                                Получить всех!
+                            </button>
+                        </form>
+                    </p>
 
                 </div>
                 <div id="content-2-2">

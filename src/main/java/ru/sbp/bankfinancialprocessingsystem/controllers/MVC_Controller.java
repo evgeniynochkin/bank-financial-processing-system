@@ -9,6 +9,7 @@ import ru.sbp.bankfinancialprocessingsystem.dao.repositories.ClientsRepository;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -35,12 +36,21 @@ public class MVC_Controller {
         return model;
     }
 
-    @DeleteMapping("/delete")
+    @PostMapping("/main")
     public ModelAndView delete(@RequestParam("userLogin") String userLogin){
+
+        Optional<Clients> client = clientsRepository.findById(userLogin);
+
 
         ModelAndView model = new ModelAndView();
         model.setViewName("/clients.jsp");
-        model.addObject("message", "Добро пожаловать в систему поиска и регитрации клиентов банка!");
+        if (!client.isPresent())
+        {
+            model.addObject("message", "Клиент с логином '" + userLogin + "' не найден в базе данных!");
+        } else {
+            clientsRepository.deleteById(userLogin);
+            model.addObject("message", "Клиент с логином '" + userLogin + "' удален!");
+        }
         return model;
     }
 
@@ -50,8 +60,14 @@ public class MVC_Controller {
         Optional<Clients> client = clientsRepository.findById(userLogin);
         ModelAndView model = new ModelAndView();
         model.setViewName("/clients.jsp");
-        model.addObject("userData",client.get());
-        model.addObject("message", "Добро пожаловать в систему поиска и регитрации клиентов банка!");
+        if (!client.isPresent())
+        {
+            model.addObject("message", "Клиент с логином '" + userLogin + "' не найден в базе данных!");
+        } else {
+            model.addObject("userData",client.get());
+            model.addObject("message", "Добро пожаловать в систему поиска и регитрации клиентов банка!");
+        }
+
         return model;
     }
 
@@ -77,11 +93,54 @@ public class MVC_Controller {
         return model;
     }
 
-    @PostMapping("main")
+    @PostMapping("/create")
     public ModelAndView new_user(@RequestBody() Clients client){
 
-        System.out.printf(clientsRepository.save(client).toString());
         ModelAndView model = new ModelAndView();
+        if (client == null || client.getUserLogin().equals("")) {
+            model.addObject("message", "Нельзя зписывать клиента с пустым логином!");
+        } else {
+            if (clientsRepository.findById(client.getUserLogin()).isPresent()) {
+
+                model.addObject("message", "Изменения внесены успешно!");
+            } else {
+
+                model.addObject("message", "Новый клиент внесен!");
+            }
+            System.out.printf(clientsRepository.save(client).toString());
+            model.addObject("userData", client);
+        }
+        model.setViewName("/clients.jsp");
+        return model;
+    }
+
+    @GetMapping("/find_fio")
+    public ModelAndView find_fio(@RequestParam("firstName") String firstName,
+                                 @RequestParam("secondName") String secondName,
+                                 @RequestParam("middleName") String  middleName) {
+
+        ModelAndView model = new ModelAndView();
+        if (firstName.equals("")&&secondName.equals("")&&middleName.equals("")) {
+            model.addObject("message", "Поиск пустых данных закончится неудачей!");
+        } else {
+            List<Clients> clientsList = new ArrayList<>();
+            for (Clients usr: clientsRepository.findAll()) {
+                if ((!firstName.equals("")?usr.getFirstName().equals(firstName):true)
+                        && (!secondName.equals("")?usr.getLastName().equals(secondName):true)
+                        && (!middleName.equals("")?usr.getMiddleName().equals(middleName):true))
+                {
+                    clientsList.add(usr);
+                }
+            }
+            if (clientsList.size() == 0){
+                model.addObject("message", "Клиентов с данным фио не найдено в базе данных!");
+            } else if (clientsList.size() > 1){
+                model.addObject("message", "Клиентов с данным фио найдено больше одного!");
+            } else {
+                model.addObject("message", "Найден один пользователь!");
+                model.addObject("userData", clientsList.get(0));
+            }
+        }
         model.setViewName("/clients.jsp");
         return model;
     }
