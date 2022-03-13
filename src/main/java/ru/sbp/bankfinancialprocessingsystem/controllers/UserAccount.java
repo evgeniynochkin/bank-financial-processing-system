@@ -81,15 +81,35 @@ public class UserAccount {
     private double money;
 
     /**
+     * Логин юзера
+     */
+    private String userLogin;
+    @GetMapping(value = "/info/{userLogin}")
+    public ModelAndView getInformationLogin(@PathVariable(value = "userLogin") String userLogin) {
+        System.out.println(userLogin);
+        this.userLogin = userLogin;
+
+        return this.getInformationAboutCheck();
+    }
+
+    /**
      * Отправляет информацию по наименованию клиента(name), номеру аккаунта(accountNumber),
      * активному статусу(activityStatus) и балансу счета(balance)
      * активнаяя ссылка http://localhost:8080/infoAccount
      * @return
      */
-    @GetMapping(value = "/info/{userLogin}")
-    public ModelAndView getInformationAboutCheck(@PathVariable(value = "userLogin") String userLogin) {
-
-        System.out.println(userLogin);
+    @GetMapping(value = "/info")
+    public ModelAndView getInformationAboutCheck() {
+        if(newNumber == null) {
+            try {
+                List<Account> listAcc = repository.findByUserLogin(userLogin);
+                account = listAcc.get(0);
+                account.getNumberAccount();
+            } catch (NullPointerException e) {
+                return this.getInformationCreateNumberAccount();
+            }
+            return this.getInformationCreateNumberAccount();
+        }
 
         account = repository.findByNumberAccount(numberAccount);
         ModelAndView modelAndView = new ModelAndView();
@@ -97,7 +117,7 @@ public class UserAccount {
         modelAndView.setViewName("account/account.jsp");
 
         try {
-            modelAndView.addObject("login", account.getUserLogin());
+            modelAndView.addObject("login", userLogin);
             modelAndView.addObject("accountNumber",account.getNumberAccount());
             modelAndView.addObject("dateOpen", account.getDateOpen());
             modelAndView.addObject("activityStatus", account.getAccountActive());
@@ -113,8 +133,9 @@ public class UserAccount {
                 return modelAndView;
             }
         }catch (NullPointerException e){
-            modelAndView.addObject("login","-");
+            modelAndView.addObject("login",userLogin);
             modelAndView.addObject("accountNumber","-");
+            modelAndView.addObject("card", "-" );
             modelAndView.addObject("dateOpen","-" );
             modelAndView.addObject("activityStatus", "-");
             modelAndView.addObject("balance", "");
@@ -123,20 +144,20 @@ public class UserAccount {
         }
     }
 
-//    @PostMapping(value = "/info")
-//    public ModelAndView updateInformation(
-//            @RequestParam("numberAccount") String numberAccount){
-//
-//        this.numberAccount = numberAccount;
-//        account = repository.findByNumberAccount(numberAccount);
-//        try {
-//            account.getNumberAccount();
-//        }catch (NullPointerException e){
-//            System.out.println("no such number in db");
-//            return erorr.getErorrNumberInfo();
-//        }
-//        return this.getInformationAboutCheck();
-//    }
+    @PostMapping(value = "/info")
+    public ModelAndView updateInformation(
+            @RequestParam("numberAccount") String numberAccount){
+
+        this.numberAccount = numberAccount;
+        account = repository.findByNumberAccount(numberAccount);
+        try {
+            account.getNumberAccount();
+        }catch (NullPointerException e){
+            System.out.println("no such number in db");
+            return erorr.getErorrNumberInfo();
+        }
+        return this.getInformationAboutCheck();
+    }
 
     /**
      * Выводит информацию по счету.
@@ -316,7 +337,7 @@ public class UserAccount {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("account/createsAnAccount.jsp");
         //вызов логина
-        modelAndView.addObject("login","User: " + "serj");
+        modelAndView.addObject("login","User: " + userLogin);
         modelAndView.addObject("accountNumber","Number account: " + newNumber);
 
         return modelAndView;
@@ -333,8 +354,7 @@ public class UserAccount {
     public ModelAndView updateDeposit(
             @RequestParam("accountType") String accountType,
             @RequestParam("currency") String currency){
-
-        service.setInformation(currency,accountType);
+        service.setInformation(currency,accountType,userLogin);
         this.newNumber = service.createNewAccount();
 
         return this.getInformationCreateNumberAccount();
