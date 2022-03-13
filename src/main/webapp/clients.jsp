@@ -44,8 +44,8 @@
             "phone": clientForm.telephone.value
         };
 
-        fetch('../clients/findFIO', {
-            method: 'PUT',
+        fetch('../clients/find_fio', {
+            method: 'POST',
             headers: {
                 'Accept': 'application/json, text/plain, */*',
                 'Content-Type': 'application/json'
@@ -154,6 +154,40 @@ body {
                             </form>
                         </fieldset>
                     </div>
+
+                    <p>
+
+                    <fieldset>
+                        <legend>Поиск клиента по ФИО</legend>
+                            <form action="../clients/find_fio" method="GET" >
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="firstName">Имя </label>
+                                    <div class="col-md-4">
+                                        <input id="irstName" name="firstName" type="input" placeholder="Имя" class="form-control input-md" value="${userData.firstName}"> [NN]
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="secondName">Фамилия </label>
+                                    <div class="col-md-4">
+                                        <input id="econdName" name="secondName" type="input" placeholder="Фамилия" class="form-control input-md"  value="${userData.lastName}"> [NN]
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="middleName">Отчество</label>
+                                    <div class="col-md-4">
+                                        <input id="iddleName" name="middleName" type="input" placeholder="Отчество" class="form-control input-md" value="${userData.middleName}">
+
+                                    </div>
+                                </div>
+
+                                <p><button type="submit"> Найти по ФИО </button></p>
+                            </form>
+                    </fieldset>
+                    </p>
                     <p>
                         <form action="../clients/all" method="GET">
                             <button id="all" name="all" class="btn btn-default">
@@ -161,11 +195,7 @@ body {
                             </button>
                         </form>
                     </p>
-                    <p>
-                        <form onsubmit="findFIO()">
-                            <button type="submit"> Найти по ФИО </button>
-                        </form>
-                    </p>
+
                 </div>
                 <div id="content-2-2">
                     <p></p>

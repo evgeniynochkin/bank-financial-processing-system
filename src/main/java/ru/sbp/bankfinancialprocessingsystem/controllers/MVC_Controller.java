@@ -7,6 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ru.sbp.bankfinancialprocessingsystem.dao.entity.Clients;
 import ru.sbp.bankfinancialprocessingsystem.dao.repositories.ClientsRepository;
 
+import javax.servlet.annotation.WebServlet;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -100,24 +101,34 @@ public class MVC_Controller {
         if (client == null || client.getUserLogin().equals("")) {
             model.addObject("message", "Нельзя зписывать клиента с пустым логином!");
         } else {
+            if (clientsRepository.findById(client.getUserLogin()).isPresent()) {
+
+                model.addObject("message", "Изменения внесены успешно!");
+            } else {
+
+                model.addObject("message", "Новый клиент внесен!");
+            }
             System.out.printf(clientsRepository.save(client).toString());
             model.addObject("userData", client);
         }
         model.setViewName("/clients.jsp");
         return model;
     }
-    @PutMapping("/findFIO")
-    public ModelAndView find_fio(@RequestBody() Clients user) {
+
+    @GetMapping("/find_fio")
+    public ModelAndView find_fio(@RequestParam("firstName") String firstName,
+                                 @RequestParam("secondName") String secondName,
+                                 @RequestParam("middleName") String  middleName) {
 
         ModelAndView model = new ModelAndView();
-        if (user == null) {
-            model.addObject("message", "Нельзя зписывать клиента с пустым логином!");
+        if (firstName.equals("")&&secondName.equals("")&&middleName.equals("")) {
+            model.addObject("message", "Поиск пустых данных закончится неудачей!");
         } else {
             List<Clients> clientsList = new ArrayList<>();
             for (Clients usr: clientsRepository.findAll()) {
-                if (usr.getFirstName().equals(user.getFirstName())
-                        &&usr.getLastName().equals(user.getLastName())
-                        &&usr.getMiddleName().equals(user.getMiddleName()))
+                if ((!firstName.equals("")?usr.getFirstName().equals(firstName):true)
+                        && (!secondName.equals("")?usr.getLastName().equals(secondName):true)
+                        && (!middleName.equals("")?usr.getMiddleName().equals(middleName):true))
                 {
                     clientsList.add(usr);
                 }
