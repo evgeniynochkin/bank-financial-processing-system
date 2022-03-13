@@ -26,7 +26,6 @@ import java.util.Optional;
 
 @Component
 public class CustomUserDetailedService implements UserDetailsService {
-//public class CustomUserDetailedService {
 
     @Autowired
     GlobalUserRepository globalUserRepository;
