@@ -25,10 +25,10 @@ import java.util.Date;
 @RequestMapping(value = "/pos")
 public class PosController {
 
-    @Value("${terminalid}")
+   // @Value("${terminalid}")
     private String terminalId;
 
-    @Value("${address}")
+   // @Value("${address}")
     private String address;
 
     @GetMapping
