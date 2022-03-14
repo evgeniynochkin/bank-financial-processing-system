@@ -4,12 +4,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page pageEncoding="UTF-8" %>
 <head>
+    <link href="${pageContext.request.contextPath}/assets/css/style.css" rel="stylesheet" type="text/css">
     <meta charset="UTF-8">
     <title>Card info</title>
 </head>
 <body>
-    <h1>Client information</h1>
-    <form>
+    <h1 class="utitle">Client information</h1>
+    <form class="formusers">
         Login: ${client.userLogin}<br>
         First name: ${client.firstName}<br>
         Middle name: ${client.middleName}<br>
@@ -21,14 +22,16 @@
         Email: ${client.email}<br>
         Phone: ${client.phone}<br>
         <br>
-        <table border="1" width="1500">
+        <table border="1" width="1500" class="usertable">
+            <caption>Open account and cards</caption>
             <tr bgcolor="Gainsboro">
-                <td>Account</td>
-                <td>Currency</td>
-                <td>Type account</td>
-                <td>Card</td>
-                <td>Type card</td>
-                <td>Balance</td>
+                <td class="zag">Account</td>
+                <td class="zag">Currency</td>
+                <td class="zag">Type account</td>
+                <td class="zag">Card</td>
+                <td class="zag">Type card</td>
+                <td class="zag">Balance</td>
+                <td class="zag"></td>
             </tr>
             <c:forEach items="${accounts}" var="acc">
                 <tr>
@@ -38,13 +41,14 @@
                     <td>${acc.value.cardNumber}</td>
                     <td>${acc.value.paymentSystem}</td>
                     <td>${acc.key.balance}</td>
-                    <td><input name="accountNumber" formaction="/account/info/${acc.key.numberAccount}" formmethod="get" type="submit" value="Info Account"></td>
+                    <td><input class="ulink" name="accountNumber" formaction="/account/info/${acc.key.numberAccount}" formmethod="get" type="submit" value="Info Account"></td>
                 </tr>
             </c:forEach>
         </table>
+        <br>
+        <td><input class="ulink" name="userLogin" formaction="/account/add/${client.userLogin}" formmethod="get" type="submit" value="Create New Account"></td>
+        <br><br>
         <a href="/showall" class="button24">Go back</a> <a href="/logout" class="button24">Logout</a>
-        <td><input name="userLogin" formaction="/account/add/${client.userLogin}" formmethod="get" type="submit" value="Create New Account"></td>
     </form>
-
 </body>
 </html>
