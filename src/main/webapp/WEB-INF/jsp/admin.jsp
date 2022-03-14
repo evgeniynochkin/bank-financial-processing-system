@@ -83,6 +83,9 @@
                     <a href="/delete" class="button2">Delete user</a>
                 </div>
                 <div class="field_signup">
+                    <a href="/clients/main" class="button2">Users menu</a>
+                </div>
+                <div class="field_signup">
                      <a href="/logout" class="button24">Logout</a>
                 </div>
     </form>

@@ -101,6 +101,8 @@ public class UserAccount {
      */
     @GetMapping(value = "/info")
     public ModelAndView getInformationAboutCheck() {
+
+
         if(newNumber == null) {
             try {
                 List<Account> listAcc = repository.findByUserLogin(userLogin);

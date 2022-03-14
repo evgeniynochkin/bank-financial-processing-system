@@ -33,7 +33,10 @@
        <button>Account statement</button>
 </form>
 <form action="/card/info" method="get">
-	<button>Creat card</button>
+	<td><input name="accountNumber" formaction="/card/add/${accountNumber}" formmethod="get" type="submit" value="Create card"></td>
+</form>
+<form action="/card/info" method="get">
+	<td><input name="accountNumber" formaction="/card/info/${accountNumber}" formmethod="get" type="submit" value="Card info"></td>
 </form>
 
 	<br>
