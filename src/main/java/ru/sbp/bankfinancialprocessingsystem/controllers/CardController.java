@@ -78,7 +78,7 @@ public class CardController {
 
         mav.setViewName("card/cardpage.jsp");
         mav.addObject("card", card);
-        mav.addObject("accpunt", card.getNumberAccount());
+        mav.addObject("account", card.getNumberAccount());
 
         return mav;
     }

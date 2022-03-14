@@ -50,12 +50,12 @@
                        <td>${user.passportDate}</td>
                        <td>${user.email}</td>
                        <td>${user.phone}</td>
-                       <td><input name="userLogin" formaction="/account/info/${user.userLogin}" formmethod="get" type="submit" value="Accounts"></td>
+                       <td><input name="userLogin" formaction="/clientinfo/${user.userLogin}" formmethod="get" type="submit" value="Accounts"></td>
            </tr>
            </c:forEach>
 
         </table>
-            <a href="/afterlogin" class="button24">Go back</a> <a href="/logout" class="button24">Logout</a>
+            <a href="/showall" class="button24">Go back</a> <a href="/logout" class="button24">Logout</a>
     </form>
 </body>
 </html>
