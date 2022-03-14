@@ -2,10 +2,7 @@ package ru.sbp.bankfinancialprocessingsystem.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import ru.sbp.bankfinancialprocessingsystem.dao.entity.Account;
 import ru.sbp.bankfinancialprocessingsystem.dao.entity.Transactions;
@@ -20,6 +17,7 @@ import java.util.List;
 
 /**
  * @autor Sergey Vasiliev
+ * @autor Evgeniy Nochkin
  */
 @Controller
 @RequestMapping(value = "/account")
@@ -83,6 +81,30 @@ public class UserAccount {
     private double money;
 
     /**
+     * Логин юзера
+     */
+    private String userLogin;
+    @GetMapping(value = "/add/{userLogin}")
+    public ModelAndView getInformationLogin(@PathVariable(value = "userLogin") String userLogin) {
+
+        this.userLogin = userLogin;
+
+        return this.getInformationAboutCheck();
+    }
+
+    /**
+     * Логин юзера
+     */
+    @GetMapping(value = "/info/{accountNumber}")
+    public ModelAndView getInformationNumber(@PathVariable(value = "accountNumber") String accountNumber) {
+        this.newNumber = accountNumber;
+        this.numberAccount = accountNumber;
+        this.account = repository.findByNumberAccount(newNumber);
+
+        return this.getInformationAboutCheck();
+    }
+
+    /**
      * Отправляет информацию по наименованию клиента(name), номеру аккаунта(accountNumber),
      * активному статусу(activityStatus) и балансу счета(balance)
      * активнаяя ссылка http://localhost:8080/infoAccount
@@ -91,7 +113,21 @@ public class UserAccount {
     @GetMapping(value = "/info")
     public ModelAndView getInformationAboutCheck() {
 
+        if(newNumber == null) {
+            try {
+                List<Account> listAcc = repository.findByUserLogin(userLogin);
+               if (listAcc.size() != 0) {
+                   account = listAcc.get(0);
+                   account.getNumberAccount();
+               }
+            } catch (NullPointerException e) {
+                return this.getInformationCreateNumberAccount();
+            }
+            return this.getInformationCreateNumberAccount();
+        }
+
         account = repository.findByNumberAccount(numberAccount);
+
         ModelAndView modelAndView = new ModelAndView();
 
         modelAndView.setViewName("account/account.jsp");
@@ -113,8 +149,9 @@ public class UserAccount {
                 return modelAndView;
             }
         }catch (NullPointerException e){
-            modelAndView.addObject("login","-");
+            modelAndView.addObject("login", userLogin);
             modelAndView.addObject("accountNumber","-");
+            modelAndView.addObject("card", "-" );
             modelAndView.addObject("dateOpen","-" );
             modelAndView.addObject("activityStatus", "-");
             modelAndView.addObject("balance", "");
@@ -128,7 +165,7 @@ public class UserAccount {
             @RequestParam("numberAccount") String numberAccount){
 
         this.numberAccount = numberAccount;
-       account = repository.findByNumberAccount(numberAccount);
+        account = repository.findByNumberAccount(numberAccount);
         try {
             account.getNumberAccount();
         }catch (NullPointerException e){
@@ -182,8 +219,6 @@ public class UserAccount {
      * нет в bd, выскакивает окно с просьбой проверить № или
      * создать новый.
      *    Также записывается транзакция в бд.
-     //     * @param request
-     //     * @param response
      * @param moneyString
      * @return
      */
@@ -254,8 +289,6 @@ public class UserAccount {
         if((account = repository.findByNumberAccount(numberAccount)) == null){
             this.numberAccount = null;
         }
-
-
         return modelAndView;
     }
 
@@ -315,9 +348,8 @@ public class UserAccount {
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("account/createsAnAccount.jsp");
-        //вызов логина
-        modelAndView.addObject("login","User: " + "serj");
-        modelAndView.addObject("accountNumber","Number account: " + newNumber);
+        modelAndView.addObject("userLogin", userLogin);
+        modelAndView.addObject("accountNumber", newNumber);
 
         return modelAndView;
     }
@@ -333,8 +365,7 @@ public class UserAccount {
     public ModelAndView updateDeposit(
             @RequestParam("accountType") String accountType,
             @RequestParam("currency") String currency){
-
-        service.setInformation(currency,accountType);
+        service.setInformation(currency,accountType,userLogin);
         this.newNumber = service.createNewAccount();
 
         return this.getInformationCreateNumberAccount();
@@ -350,10 +381,9 @@ public class UserAccount {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("account/accountStatement.jsp");
         try {
-
             List<Transactions> transactionList = transRepository.getInformationAboutTrans(numberAccount);
-            //вызов логина
-            modelAndView.addObject("login", "User: " + "serj");
+
+            modelAndView.addObject("login", account.getUserLogin());
             modelAndView.addObject("transactionList", transactionList);
             modelAndView.addObject("accountNumber", account.getNumberAccount());
             modelAndView.addObject("balance", account.getBalance());

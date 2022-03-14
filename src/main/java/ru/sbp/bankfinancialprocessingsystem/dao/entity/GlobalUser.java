@@ -63,10 +63,10 @@ public class GlobalUser {
      * @param - String userPassword,
      * @param - UserRoleType userRole
      */
-    public GlobalUser(String userLogin, String userPassword, UserRoleType userRole) {
+    public GlobalUser(String userLogin, String userPassword, String userRole) {
         this.userLogin = userLogin;
         this.userPassword = userPassword;
-        this.userRole = userRole.name();
+        this.userRole = userRole;
     }
 
     @Override

@@ -32,16 +32,12 @@
 <form action="/account/info/accountStatement" method="get">
        <button>Account statement</button>
 </form>
-<form action="/Евгений" method="get">
-	<button>Creat card</button>
+<form action="/card/info" method="get">
+	<td><input name="accountNumber" formaction="/card/add/${accountNumber}" formmethod="get" type="submit" value="Create card"></td>
 </form>
-
 	<br>
-	<br>
-	<br>
-	<br>
-	<form action="/logout" method="get">
-	<input type="submit" value="Back">
+	<form>
+		<input input name="userLogin" formaction="/clientinfo/${login}" formmethod="get" type="submit" value="Client info">
 	</form>
 </body>
 </html>
