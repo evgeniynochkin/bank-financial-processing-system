@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.sbp.bankfinancialprocessingsystem.cardutil.CardUtil;
 import ru.sbp.bankfinancialprocessingsystem.dao.entity.Card;
+import ru.sbp.bankfinancialprocessingsystem.dao.entity.enums.CardStatusType;
 import ru.sbp.bankfinancialprocessingsystem.dao.repositories.CardsRepository;
 
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -24,6 +26,8 @@ public class CardService {
     public void createNewCard(Card card) {
         List<Card> list = repo.findAll();
 
+        card.setExpirationDate(new Date(new java.util.Date().getTime()));
+        card.setCardStatus(CardStatusType.Valid);
         card.setCardNumber(CardUtil.getNumberCard(list, card.getPaymentSystem()));
 
         repo.save(card);
