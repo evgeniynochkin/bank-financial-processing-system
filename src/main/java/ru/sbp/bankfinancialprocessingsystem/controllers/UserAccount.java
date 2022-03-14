@@ -13,11 +13,11 @@ import ru.sbp.bankfinancialprocessingsystem.service.account.AccountService;
 import ru.sbp.bankfinancialprocessingsystem.service.account.TransactionAccount;
 import ru.sbp.bankfinancialprocessingsystem.service.account.СalculationsAccount;
 
-import javax.websocket.server.PathParam;
 import java.util.List;
 
 /**
  * @autor Sergey Vasiliev
+ * @autor Evgeniy Nochkin
  */
 @Controller
 @RequestMapping(value = "/account")
@@ -219,8 +219,6 @@ public class UserAccount {
      * нет в bd, выскакивает окно с просьбой проверить № или
      * создать новый.
      *    Также записывается транзакция в бд.
-     //     * @param request
-     //     * @param response
      * @param moneyString
      * @return
      */
@@ -291,8 +289,6 @@ public class UserAccount {
         if((account = repository.findByNumberAccount(numberAccount)) == null){
             this.numberAccount = null;
         }
-
-
         return modelAndView;
     }
 
@@ -385,7 +381,6 @@ public class UserAccount {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("account/accountStatement.jsp");
         try {
-
             List<Transactions> transactionList = transRepository.getInformationAboutTrans(numberAccount);
 
             modelAndView.addObject("login", account.getUserLogin());

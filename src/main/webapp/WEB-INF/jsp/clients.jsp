@@ -116,11 +116,11 @@ body {
 			<p>${message} </p>
 		</div>
 		<div id="main" class="cf">
-			<div id="content-1">
-				<p>Левый столбец</p>
-				<p>
-				</p>
-			</div>
+<%--			<div id="content-1">--%>
+<%--				<p>Левый столбец</p>--%>
+<%--				<p>--%>
+<%--				</p>--%>
+<%--			</div>--%>
 			<div id="content-2">
 				<div id="content-2-1">
 
@@ -201,7 +201,7 @@ body {
                     <p></p>
 
                     <fieldset>
-                        <legend>Client of bank / Регистрация клиента</legend>
+                        <legend>Client of bank / Редактирование данных клиента</legend>
                         <form name="clientForm" class="form-horizontal" onsubmit="NewClient(this)">
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="userLogin">Имя входа клиента</label>
@@ -278,7 +278,7 @@ body {
                                 <input id="telephone" name="telephone" type="input" placeholder="Телефон" class="form-control input-md" value="${userData.phone}">
                             </div>
                         </div>
-                        <p><button type="submit" class="btn btn-primary" value="save">Сохранить / изменить</button></p>
+                        <p><button type="submit" class="btn btn-primary" value="save">Изменить данные</button></p>
                     </form>
                     </fieldset>
                     <p>
@@ -287,7 +287,8 @@ body {
 		</div>
 		<div id="footer" class="cf">
 			<p>
-                <p>Список:</p>
+                <a href="/afterlogin" class="button24">Admin menu</a> <a href="/logout" class="button24">Logout</a>
+<%--                <p>Список:</p>--%>
                 <c:forEach items="${clientsList}" var="clients">
                     login: ${clients.userLogin} <br>
                     Firstname: ${clients.firstName} <br>
