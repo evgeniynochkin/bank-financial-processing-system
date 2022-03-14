@@ -7,7 +7,7 @@
 <style>
 body {
     		height: 100%;
-    		background: radial-gradient(circle farthest-corner at 100px 50px, #FBF2EB, #352A3B ); //aqua, darkblue #FBF2EB, #352A3B
+            background: radial-gradient(circle farthest-corner at 100px 50px, #FBF2EB, #76ab81); //aqua, darkblue #FBF2EB, #352A3B
     		background-repeat: no-repeat;
     		background-size: cover;
     		background-attachment: fixed;

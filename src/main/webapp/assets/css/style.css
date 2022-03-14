@@ -1,0 +1,54 @@
+body {
+    height: 100%;
+    background: radial-gradient(circle farthest-corner at 100px 50px, #FBF2EB, #76ab81); //aqua, darkblue #FBF2EB, #352A3B
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.utitle {
+    font-size: 40px;
+    font-weight: 700;
+}
+
+.formusers {
+    font-size: 20px;
+}
+
+.zag {
+    background: #53af67;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.usertable {
+    background: #dddddd;
+    border: 1px solid darkgoldenrod;
+}
+
+caption{
+    caption-side: top;
+    text-align: left;
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.ulink {
+
+}
+
+.button24{
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+    padding: .5em 2em;
+    outline: none;
+    border-width: 2px 0;
+    border-style: solid none;
+    border-color: #FDBE33 #000 #D77206;
+    border-radius: 6px;
+    background: linear-gradient(#F3AE0F, #E38916) #E38916;
+    transition: 0.2s;
+}
+.button24:hover { background: linear-gradient(#f5ae00, #f59500) #f5ae00; }
+.button24:active { background: linear-gradient(#f59500, #f5ae00) #f59500; }
