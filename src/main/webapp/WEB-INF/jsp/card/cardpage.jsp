@@ -9,16 +9,16 @@
 </head>
 <body>
     <h1>Card information</h1>
-    <form action="/showall" method="get">
-        User: ${accpunt.userLogin}<br>
-        Account number: ${accpunt.numberAccount} <br>
+    <form>
+        User: ${account.userLogin}<br>
+        Account number: ${account.numberAccount} <br>
         Card number: ${card.cardNumber} <br>
         Payment system: ${card.paymentSystem}<br>
         Data open: ${card.expirationDate} <br>
         Holder name: ${card.cardHolderName} <br>
         Activity status: ${card.cardStatus} <br>
-        Balance: ${accpunt.balance} ${accpunt.currency} <br>
-        <input type="submit" value="Список пользователей">
+        Balance: ${account.balance} ${account.currency} <br>
+        <input input name="userLogin" formaction="/clientinfo/${account.userLogin}" formmethod="get" type="submit" value="Список пользователей">
     </form>
 </body>
 </html>

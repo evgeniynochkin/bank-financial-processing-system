@@ -14,6 +14,7 @@ import ru.sbp.bankfinancialprocessingsystem.dao.entity.Clients;
 @Repository
 public interface ClientsRepository extends CrudRepository<Clients, String> {
 
+    Clients findByUserLogin(String userLogin);
 }
 
 

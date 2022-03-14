@@ -3,6 +3,7 @@ package ru.sbp.bankfinancialprocessingsystem.dao.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import ru.sbp.bankfinancialprocessingsystem.dao.entity.Account;
 import ru.sbp.bankfinancialprocessingsystem.dao.entity.Card;
 
 /**
@@ -14,5 +15,6 @@ import ru.sbp.bankfinancialprocessingsystem.dao.entity.Card;
  */
 @Repository
 public interface CardsRepository extends JpaRepository<Card, Integer> {
-    Card findCardById(Integer id);
+
+    Card findByNumberAccount(Account account);
 }

@@ -3,8 +3,10 @@ package ru.sbp.bankfinancialprocessingsystem.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.sbp.bankfinancialprocessingsystem.cardutil.CardUtil;
+import ru.sbp.bankfinancialprocessingsystem.dao.entity.Account;
 import ru.sbp.bankfinancialprocessingsystem.dao.entity.Card;
 import ru.sbp.bankfinancialprocessingsystem.dao.entity.enums.CardStatusType;
+import ru.sbp.bankfinancialprocessingsystem.dao.repositories.AccountRepository;
 import ru.sbp.bankfinancialprocessingsystem.dao.repositories.CardsRepository;
 
 import java.sql.Date;
@@ -19,6 +21,9 @@ public class CardService {
     @Autowired
     private CardsRepository repo;
 
+    @Autowired
+    private AccountRepository accountRepository;
+
     /**
      * Создание карты
      * @param card
@@ -31,22 +36,9 @@ public class CardService {
         card.setCardNumber(CardUtil.getNumberCard(list, card.getPaymentSystem()));
 
         repo.save(card);
-    }
 
-    /**
-     * Сохранение изменений в карте
-     * @param card изменяемая карта
-     */
-    public void saveCard(Card card) {
-        repo.save(card);
-    }
-
-    /**
-     * Поиск карты по id
-     * @param id карты
-     * @return найденная карта
-     */
-    public Card getCardById(Integer id) {
-        return repo.findCardById(id);
+        Account account = card.getNumberAccount();
+        account.setCard(card);
+        accountRepository.save(account);
     }
 }
