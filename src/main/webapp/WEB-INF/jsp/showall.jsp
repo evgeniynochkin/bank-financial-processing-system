@@ -55,7 +55,7 @@
            </c:forEach>
 
         </table>
-            <a href="/showall" class="button24">Go back</a> <a href="/logout" class="button24">Logout</a>
+            <a href="/afterlogin" class="button24">Admin menu</a> <a href="/logout" class="button24">Logout</a>
     </form>
 </body>
 </html>
