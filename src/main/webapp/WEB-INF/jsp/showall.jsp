@@ -39,6 +39,7 @@
            </c:forEach>
 
         </table>
+        <br>
         <a href="/afterlogin" class="button24">Admin menu</a> <a href="/logout" class="button24">Logout</a>
     </form>
 </body>
