@@ -18,7 +18,7 @@
         Holder name: ${card.cardHolderName} <br>
         Activity status: ${card.cardStatus} <br>
         Balance: ${account.balance} ${account.currency} <br>
-        <input input name="userLogin" formaction="/clientinfo/${account.userLogin}" formmethod="get" type="submit" value="Список пользователей">
+        <input input name="userLogin" formaction="/clientinfo/${account.userLogin}" formmethod="get" type="submit" value="Client info">
     </form>
 </body>
 </html>

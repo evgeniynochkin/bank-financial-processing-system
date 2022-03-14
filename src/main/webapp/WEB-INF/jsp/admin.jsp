@@ -6,7 +6,7 @@
     <style type="text/css">
 	body {
     		height: 100%;
-    		background: radial-gradient(circle farthest-corner at 100px 50px, #FBF2EB, #352A3B ); //aqua, darkblue #FBF2EB, #352A3B
+            background: radial-gradient(circle farthest-corner at 100px 50px, #FBF2EB, #76ab81); //aqua, darkblue #FBF2EB, #352A3B
     		background-repeat: no-repeat;
     		background-size: cover;
     		background-attachment: fixed;
@@ -26,7 +26,7 @@
 		clear:both;
 		text-align:center;
 		font-size: 250%;
-		color: white;
+		color: #e0a61f;
 	}
 	.field_signup{
 		font-family: "Roboto Slab", serif;
@@ -62,7 +62,7 @@
       border-style: solid none;
       border-color: #FDBE33 #000 #D77206;
       border-radius: 6px;
-      background: linear-gradient(#4169E1, #0000FF) #0000FF;
+      background: linear-gradient(#4169E1, #2727fd) #3d3dfc;
       transition: 0.2s;
     }
     </style>
