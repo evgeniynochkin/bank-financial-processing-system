@@ -84,10 +84,22 @@ public class UserAccount {
      * Логин юзера
      */
     private String userLogin;
-    @GetMapping(value = "/info/{userLogin}")
+    @GetMapping(value = "/add/{userLogin}")
     public ModelAndView getInformationLogin(@PathVariable(value = "userLogin") String userLogin) {
-        System.out.println(userLogin);
+
         this.userLogin = userLogin;
+
+        return this.getInformationAboutCheck();
+    }
+
+    /**
+     * Логин юзера
+     */
+    @GetMapping(value = "/info/{accountNumber}")
+    public ModelAndView getInformationNumber(@PathVariable(value = "accountNumber") String accountNumber) {
+        this.newNumber = accountNumber;
+        this.numberAccount = accountNumber;
+        this.account = repository.findByNumberAccount(newNumber);
 
         return this.getInformationAboutCheck();
     }
@@ -100,7 +112,6 @@ public class UserAccount {
      */
     @GetMapping(value = "/info")
     public ModelAndView getInformationAboutCheck() {
-
 
         if(newNumber == null) {
             try {
@@ -116,12 +127,13 @@ public class UserAccount {
         }
 
         account = repository.findByNumberAccount(numberAccount);
+
         ModelAndView modelAndView = new ModelAndView();
 
         modelAndView.setViewName("account/account.jsp");
 
         try {
-            modelAndView.addObject("login", userLogin);
+            modelAndView.addObject("login", account.getUserLogin());
             modelAndView.addObject("accountNumber",account.getNumberAccount());
             modelAndView.addObject("dateOpen", account.getDateOpen());
             modelAndView.addObject("activityStatus", account.getAccountActive());
@@ -137,7 +149,7 @@ public class UserAccount {
                 return modelAndView;
             }
         }catch (NullPointerException e){
-            modelAndView.addObject("login",userLogin);
+            modelAndView.addObject("login", userLogin);
             modelAndView.addObject("accountNumber","-");
             modelAndView.addObject("card", "-" );
             modelAndView.addObject("dateOpen","-" );
@@ -340,9 +352,8 @@ public class UserAccount {
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("account/createsAnAccount.jsp");
-        //вызов логина
-        modelAndView.addObject("login","User: " + userLogin);
-        modelAndView.addObject("accountNumber","Number account: " + newNumber);
+        modelAndView.addObject("userLogin", userLogin);
+        modelAndView.addObject("accountNumber", newNumber);
 
         return modelAndView;
     }
@@ -376,8 +387,8 @@ public class UserAccount {
         try {
 
             List<Transactions> transactionList = transRepository.getInformationAboutTrans(numberAccount);
-            //вызов логина
-            modelAndView.addObject("login", "User: " + "serj");
+
+            modelAndView.addObject("login", account.getUserLogin());
             modelAndView.addObject("transactionList", transactionList);
             modelAndView.addObject("accountNumber", account.getNumberAccount());
             modelAndView.addObject("balance", account.getBalance());

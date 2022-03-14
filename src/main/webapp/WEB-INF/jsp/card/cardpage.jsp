@@ -9,7 +9,7 @@
 </head>
 <body>
     <h1>Card information</h1>
-    <form action="/showall" method="get">
+    <form>
         User: ${account.userLogin}<br>
         Account number: ${account.numberAccount} <br>
         Card number: ${card.cardNumber} <br>
@@ -18,7 +18,7 @@
         Holder name: ${card.cardHolderName} <br>
         Activity status: ${card.cardStatus} <br>
         Balance: ${account.balance} ${account.currency} <br>
-        <input type="submit" value="Список пользователей">
+        <input input name="userLogin" formaction="/clientinfo/${account.userLogin}" formmethod="get" type="submit" value="Список пользователей">
     </form>
 </body>
 </html>

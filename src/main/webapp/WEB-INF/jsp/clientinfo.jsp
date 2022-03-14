@@ -10,6 +10,7 @@
 <body>
     <h1>Client information</h1>
     <form>
+        Login: ${client.userLogin}<br>
         First name: ${client.firstName}<br>
         Middle name: ${client.middleName}<br>
         Last name: ${client.lastName}<br>
@@ -37,11 +38,12 @@
                     <td>${acc.value.cardNumber}</td>
                     <td>${acc.value.paymentSystem}</td>
                     <td>${acc.key.balance}</td>
+                    <td><input name="accountNumber" formaction="/account/info/${acc.key.numberAccount}" formmethod="get" type="submit" value="Info Account"></td>
                 </tr>
             </c:forEach>
         </table>
         <a href="/showall" class="button24">Go back</a> <a href="/logout" class="button24">Logout</a>
-        <td><input name="userLogin" formaction="/account/info/${client.userLogin}" formmethod="get" type="submit" value="Accounts"></td>
+        <td><input name="userLogin" formaction="/account/add/${client.userLogin}" formmethod="get" type="submit" value="Create New Account"></td>
     </form>
 
 </body>
