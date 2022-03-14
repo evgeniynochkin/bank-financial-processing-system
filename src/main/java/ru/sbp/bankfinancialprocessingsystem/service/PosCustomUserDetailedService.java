@@ -1,4 +1,4 @@
-//package ru.sbp.bankfinancialprocessingsystem.service;
+///package ru.sbp.bankfinancialprocessingsystem.service;
 //
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.core.GrantedAuthority;

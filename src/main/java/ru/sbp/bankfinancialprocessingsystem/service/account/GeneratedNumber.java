@@ -42,12 +42,6 @@ public class GeneratedNumber {
     public void setLenghtNumberCard(int lenghtNumberCard) {
         this.lenghtNumberCard = lenghtNumberCard;
     }
-    
-    /**
-     * Связь с репозеторием db.
-     */
-    @Autowired
-    private AccountRepository repository;
 
     /**
      * Вызов entity для работы с db.
@@ -64,8 +58,12 @@ public class GeneratedNumber {
     /**
      * Связь с репозиторием транзакций в bd
      */
-    @Autowired
     private TransactionsRepository repTransaction;
+
+    /**
+     * Связь с репозеторием db.
+     */
+    private AccountRepository repository;
 
     /**
      * Номер нового счета.
@@ -88,6 +86,24 @@ public class GeneratedNumber {
     private int lenghtCodeAuthorization;
 
     public GeneratedNumber(){
+    }
+
+    /**
+     * Присваиваем репозиторий транзакций.
+     * @param repTransaction
+     */
+    @Autowired
+    public void setRepTransaction(TransactionsRepository repTransaction) {
+        this.repTransaction = repTransaction;
+    }
+
+    /**
+     * Присваиваем репозиторий аккаунта.
+     * @param repository
+     */
+    @Autowired
+    public void setRepository(AccountRepository repository) {
+        this.repository = repository;
     }
 
     /**
