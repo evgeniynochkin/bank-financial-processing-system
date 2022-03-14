@@ -10,7 +10,6 @@ import ru.sbp.bankfinancialprocessingsystem.dao.repositories.TransactionsReposit
 import ru.sbp.bankfinancialprocessingsystem.service.account.GeneratedNumber;
 import ru.sbp.bankfinancialprocessingsystem.service.account.СalculationsAccount;
 
-
 class BankFinancialProcessingSystemApplicationTests {
 
 	/**

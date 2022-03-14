@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
-public class osUserCache {
+public class PosUserCache {
 
     private Map<String, PosUserInfo> cache = new HashMap<>();
 

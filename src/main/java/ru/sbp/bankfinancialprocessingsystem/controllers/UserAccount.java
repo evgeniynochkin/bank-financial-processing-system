@@ -377,7 +377,6 @@ public class UserAccount {
         try {
 
             List<Transactions> transactionList = transRepository.getInformationAboutTrans(numberAccount);
-            //вызов логина
             modelAndView.addObject("login", "User: " + "serj");
             modelAndView.addObject("transactionList", transactionList);
             modelAndView.addObject("accountNumber", account.getNumberAccount());
