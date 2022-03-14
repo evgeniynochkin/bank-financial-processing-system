@@ -1,11 +1,10 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
     <title>Sign Up</title>
-
     <SCRIPT TYPE="text/javascript">
-
 	function clearStatus() { status = ""; }
 
 	function checkRegistration() {
@@ -18,6 +17,7 @@
 			alert("Wrong login length.");
 		return(false);
         }
+
 		var password = document.registerForm.password;
 		if (password.value == "") {
 			alert("Missing password.");
@@ -93,14 +93,11 @@
 			alert("Wrong phone format.");
 		return(false);
 		}
-
-  // Format looks OK. Submit form.
 		return(true);
 	}
 	</SCRIPT>
 
-    <style type="text/css">
-
+ <style type="text/css">
 	body {
     		height: 100%;
     		background: radial-gradient(circle farthest-corner at 100px 50px, aqua, darkblue ); //aqua, darkblue #FBF2EB, #352A3B
@@ -171,8 +168,8 @@
     .button24:hover { background: linear-gradient(#f5ae00, #f59500) #f5ae00; }
     .button24:active { background: linear-gradient(#f59500, #f5ae00) #f59500; }
     </style>
-
 </head>
+
 <body>
 <div class = "box">
     <form action="" method="POST" NAME="registerForm" onSubmit="return(checkRegistration())">
@@ -183,38 +180,38 @@
                     <input type="text" name="userlogin"  id="login" onBlur="clearStatus()"/>
                 </div>
                 <div class="field">
-                    <label for="Password">Password :</label>
+                    <label for="Password">Пароль :</label>
                     <input type="Password" name="password" id="password" onBlur="clearStatus()"/>
                 </div>
                 <div class="field">
-                    <label for="name">Name :</label>
+                    <label for="name">Имя :</label>
                     <input type="text" name="firstname" id="firstname" onBlur="clearStatus()"/>
                 </div>
                 <div class="field">
-                    <label for="middlename">Middle Name :</label>
+                    <label for="middlename">Отчество :</label>
                     <input type="text" name="middlename" id="middlename" onBlur="clearStatus()"/>
                 </div>
                 <div class="field">
-                    <label for="lastname">Last Name :</label>
+                    <label for="lastname">Фамилия :</label>
                     <input type="text" name="lastname" id="lastname" onBlur="clearStatus()"/>
                 </div>
 
                 <div class="field">
-                    <label for="birthday">birthday(yyyy-MM-dd):</label>
+                    <label for="birthday">Дата рождения(yyyy-MM-dd):</label>
                     <input type="text" name ="birthday" id ="birthday" onBlur="clearStatus()"/>
                 </div>
 
                 <div class="field">
-                    <label for="passport">Passport:</label>
+                    <label for="passport">Паспорт:</label>
                     <input type="text" name ="passport" id ="passport" onBlur="clearStatus()"/>
                 </div>
                 <div class="field">
-                    <label for="passportorg">Organization:</label>
+                    <label for="passportorg">Организация:</label>
                     <input type="text" name ="passportorg" id ="passportorg" onBlur="clearStatus()"/>
                 </div>
 
                 <div class="field">
-                    <label for="passportdate">Passport Data:</label>
+                    <label for="passportdate">Дата Паспорта (yyyy-MM-dd):</label>
                     <input type="text" name ="passportdate" id ="passportdate" onBlur="clearStatus()"/>
                 </div>
 
@@ -223,13 +220,13 @@
                     <input type="text" id="email" name="email" onBlur="clearStatus()"/>
                 </div>
                 <div class="field">
-                    <label for="Phone">Phone :</label>
+                    <label for="Phone">Номер телефона :</label>
                     <input type="text" id ="Phone" name="telephone" onBlur="clearStatus()"/>
                 </div>
                 <div class="field_signup">
-                    <input type="submit" value="Registration user" />
+                    <input type="submit" value="Зарегестрировать" />
                     <br>
-                    <a href="/afterlogin" class="button24">Go back</a> <a href="/logout" class="button24">Logout</a>
+                    <a href="/afterlogin" class="button24">Вернуться</a> <a href="/logout" class="button24">Logout</a>
                 </div>
             </div>
         </div>
@@ -238,7 +235,3 @@
 <script src="js/jquery-3.3.1.min.js"></script>
 </body>
 </html>
-
-<!--
-                     <input type="button" value="Admin Menu" onclick="window.location.href='/afterlogin';"/>
--->

@@ -1,3 +1,5 @@
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -71,16 +73,16 @@
 <div class = "box">
     <form action="" method="POST" NAME="registerForm">
                 <div class="field">
-                    <p>Admin Menu</p>
+                    <p>Страница Администратора</p>
                 </div>
                <div class="field_signup">
-                    <a href="/showall" class="button2">View all user</a>
+                    <a href="/showall" class="button2">Все клиенты</a>
                </div>
                <div class="field_signup">
-                    <a href="/add" class="button2">Registration</a>
+                    <a href="/add" class="button2">Регистрация</a>
                </div>
                 <div class="field_signup">
-                    <a href="/delete" class="button2">Delete user</a>
+                      <a href="/delete" class="button2">Удаление клиента</a>
                 </div>
                 <div class="field_signup">
                      <a href="/logout" class="button24">Logout</a>

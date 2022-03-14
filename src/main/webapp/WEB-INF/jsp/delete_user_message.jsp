@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -22,9 +23,9 @@
     .button24:hover { background: linear-gradient(#f5ae00, #f59500) #f5ae00; }
     .button24:active { background: linear-gradient(#f59500, #f5ae00) #f59500; }
 </style>
-<h2>Delete user: login ${userlogin} ${message}</h2>
+<h2>Удаление клиента: login ${userlogin} ${message}</h2>
 <br><br>
-<a href="/afterlogin" class="button24">Go back</a>
+<a href="/afterlogin" class="button24">Вернуться</a>
 </body>
 </html>
 

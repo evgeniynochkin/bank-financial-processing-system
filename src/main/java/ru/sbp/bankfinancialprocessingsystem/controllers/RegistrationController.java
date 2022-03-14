@@ -1,8 +1,8 @@
 package ru.sbp.bankfinancialprocessingsystem.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.security.core.Authentication;
-//import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -60,14 +60,14 @@ public class RegistrationController {
         GlobalUser globalUserFromDB = detailedService.getGlobalUser(userlogin);
         if(globalUserFromDB == null){
             modelAndView.addObject("userlogin", userlogin);
-            modelAndView.addObject("message", " not found");
+            modelAndView.addObject("message", " не найден");
             modelAndView.setViewName("delete_user_message.jsp");
         }else {
             Clients client = detailedService.getClient(userlogin);
             detailedService.deleteGlobalUser(userlogin);
             detailedService.deleteUserData(userlogin);
             modelAndView.addObject("userlogin", userlogin);
-            modelAndView.addObject("message", " delete from DB");
+            modelAndView.addObject("message", " удален из БД");
             modelAndView.setViewName("delete_user_message.jsp");
         }
         return modelAndView;
@@ -82,8 +82,8 @@ public class RegistrationController {
     @GetMapping("/afterlogin")
     public ModelAndView afterlogin(){
         ModelAndView modelAndView = new ModelAndView();
-//        String userlogin = getCurrentUsername();
-        String userlogin = "Admin";
+        String userlogin = getCurrentUsername();
+
         GlobalUser globalUser = detailedService.getGlobalUser(userlogin);
 
          if(globalUser == null) {
@@ -98,10 +98,10 @@ public class RegistrationController {
         return modelAndView;
     }
 
-//    public String getCurrentUsername() {
-//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//        return auth.getName();
-//    }
+    public String getCurrentUsername() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        return auth.getName();
+    }
 
 
 
@@ -178,10 +178,10 @@ public class RegistrationController {
         }else{
             if(globalUserFromDB!=null){
                 modelAndView.addObject("userlogin", userlogin);
-                modelAndView.addObject("message", " already exists.");
+                modelAndView.addObject("message", " уже существует.");
             }else{
                 modelAndView.addObject("userlogin", userlogin);
-                modelAndView.addObject("message", " сannot be added.");
+                modelAndView.addObject("message", " не может бфть добавлен.");
             }
             modelAndView.setViewName("/fail_add_user.jsp");
         }

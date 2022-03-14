@@ -1,8 +1,8 @@
-<%@ page isELIgnored="false" %>
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
-<html>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html lang="en">
 <head>
-    <meta charset="UTF-8"
+    <meta charset="UTF-8">
 </head>
 <body>
 <style>
@@ -22,7 +22,7 @@
 .button24:hover { background: linear-gradient(#f5ae00, #f59500) #f5ae00; }
 .button24:active { background: linear-gradient(#f59500, #f5ae00) #f59500; }
 </style>
-<h1>All users: ${todaydata}</h1>
+<h1>Список клиентов на дату: ${todaydata}</h1>
 <table border="1" width="1500"> <!-- Задаём границу в 1 пиксель и ширину в 300 пикселей -->
    <tr bgcolor="Gainsboro">  <!-- Задаём цвет ячеек для всей первой строки -->
                     <td>Login</td>
@@ -52,6 +52,7 @@
    </c:forEach>
 
 </table>
-    <a href="/afterlogin" class="button24">Go back</a> <a href="/logout" class="button24">Logout</a>
+    <br>
+    <a href="/afterlogin" class="button24">Вернуться</a> <a href="/logout" class="button24">Logout</a>
 </body>
 </html>

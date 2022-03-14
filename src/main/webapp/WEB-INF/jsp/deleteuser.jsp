@@ -1,7 +1,8 @@
-<!DOCTYPE html>
-<html>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
+    <meta charset="UTF-8">
   <title>Delete by login</title>
 </head>
 <style>
@@ -30,7 +31,6 @@ body {
 .button24:active { background: linear-gradient(#f59500, #f5ae00) #f59500; }
 
 .delete{
-
     	position: absolute;
    		top: 80px;
    		left: 800px;
@@ -40,18 +40,23 @@ body {
    		cursor: move;
    		box-sizing: border-box;
 }
+input[type=text]{
+   width:200px;
+   height: 50px;
+}
 </style>
 <body>
 <div class="delete">
   <form method="POST" action="">
-    <h2>Delete user by login</h2>
-    <div>
+    <h2>Удаление пользователя по login</h2>
+    <div class="delclass">
       <input name="login" type="text" placeholder="Userlogin" autofocus="true"/>
-      <button type="submit">Delete</button>
+      <button type="submit">Удалить</button>
     </div>
   </form>
+  <br>
       <a href="/logout" class="button24">Logout</a>
-      <a href="/afterlogin" class="button24">Go back</a>
+      <a href="/afterlogin" class="button24">Вернуться</a>
 </div>
 </body>
 </html>
