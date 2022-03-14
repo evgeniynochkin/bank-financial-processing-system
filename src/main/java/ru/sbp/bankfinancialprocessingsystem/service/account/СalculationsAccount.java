@@ -21,7 +21,6 @@ public class СalculationsAccount {
     /**
      * Связь с репозеторием db
      */
-    @Autowired
     private AccountRepository repository;
 
 
@@ -59,6 +58,24 @@ public class СalculationsAccount {
      */
     public double getNewBalance() {
         return newBalance;
+    }
+
+    /**
+     * Присваиваем ентити аккаунта.
+     * @param entity
+     */
+    @Autowired
+    public void setEntity(Account entity) {
+        this.entity = entity;
+    }
+
+    /**
+     * Присваиваем репозиторий bd.
+     * @param repository
+     */
+    @Autowired
+    public void setRepository(AccountRepository repository) {
+        this.repository = repository;
     }
 
     /**

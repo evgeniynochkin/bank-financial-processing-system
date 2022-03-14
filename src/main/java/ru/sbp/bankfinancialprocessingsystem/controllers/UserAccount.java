@@ -18,6 +18,7 @@ import java.util.List;
 
 /**
  * @autor Sergey Vasiliev
+ * @autor Evgeniy Nochkin
  */
 @Controller
 @RequestMapping(value = "/account")
