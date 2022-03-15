@@ -81,7 +81,7 @@ public class UserAccount {
     private double money;
 
     /**
-     * Логин юзера
+     * Получаем информацию по логину
      */
     private String userLogin;
     @GetMapping(value = "/add/{userLogin}")
@@ -93,7 +93,7 @@ public class UserAccount {
     }
 
     /**
-     * Логин юзера
+     * Получаем информацию по номеру счета
      */
     @GetMapping(value = "/info/{accountNumber}")
     public ModelAndView getInformationNumber(@PathVariable(value = "accountNumber") String accountNumber) {
@@ -106,8 +106,9 @@ public class UserAccount {
 
     /**
      * Отправляет информацию по наименованию клиента(name), номеру аккаунта(accountNumber),
-     * активному статусу(activityStatus) и балансу счета(balance)
-     * активнаяя ссылка http://localhost:8080/infoAccount
+     * активному статусу(activityStatus), балансу счета(balance), дате открытия (dateOpen),
+     * тип валюты(currency)
+     *  Если номер счета не создан, то переводит на создание нового счета.
      * @return
      */
     @GetMapping(value = "/info")
@@ -160,6 +161,11 @@ public class UserAccount {
         }
     }
 
+    /**
+     * Получаем номер счета и выводим информацию по нему.
+     * @param numberAccount
+     * @return
+     */
     @PostMapping(value = "/info")
     public ModelAndView updateInformation(
             @RequestParam("numberAccount") String numberAccount){
@@ -177,15 +183,14 @@ public class UserAccount {
 
     /**
      * Выводит информацию по счету.
-     * Eсли номера счета нет в Базе данных, то numberAccount = null,
+     *   Eсли номера счета нет в Базе данных, то numberAccount = null,
      * это нужно,чтоб когда человек вводил номера, которого нет,
      * то при возвращении на страничку /updateDeposit выходило бы
-     * сообщение "Input your number the number account".
-     *      Если номер счета верный,то выводит информацию о счете -
-     * account.getBalance().
-     *      В самом первом входе на стриничку счет неопределен, поэтому
-     * numberAccount == null и будет выводится информация "Input your
-     * number the number account".
+     * сообщение "Введите пожалуйста номер счета".
+     *   Если номер счета верный,то выводит информацию о счете
+     *   В самом первом входе на стриничку счет неопределен, поэтому
+     * numberAccount == null и будет выводится информация "Введите
+     * пожалуйста номер счета".
      * @return
      */
     @GetMapping(value = "/info/updateDeposit")
@@ -203,7 +208,7 @@ public class UserAccount {
             modelAndView.addObject("currency", account.getCurrency());
         }else {
             modelAndView.addObject("newBalance",
-                    "Input your number the number account");
+                    "Введите пожалуйста номер счета");
         }
         return modelAndView;
     }
@@ -213,7 +218,7 @@ public class UserAccount {
      * По номеру счета суммируется поступившая сумма с суммой из bd.
      * Получаемая сумма сохраняется в bd и выводится новая информация
      * getInformationDepositCash().
-     *      Если user не ввел вносимую сумму "money = "" " то
+     *      Если user не ввел вносимую сумму "money = "" "то
      * money = 0 и выводится неизмененная информация по сумме.
      *      Если номер счета не введен или введен тот, которого его
      * нет в bd, выскакивает окно с просьбой проверить № или
@@ -254,12 +259,14 @@ public class UserAccount {
 
     /**
      * Выводит информацию по счету.
-     * Eсли номера счета нет в Базе данных, то numberAccount = null,
+     *  Eсли номера счета нет в Базе данных, то numberAccount = null,
      * это нужно,чтоб когда человек вводил номер, которого нет,
-     * то при возвращении на страничку /updateDeposit выходило бы
-     * сообщение "Input your number the number account".
-     * Если номер счета верный,то выводит информацию о счете -
+     * то при возвращении на страничку /withdrawCash выходило бы
+     * сообщение "Введите пожалуйста номер счета".
+     *  Если номер счета верный,то выводит информацию о счете -
      * account.getBalance().
+     *  Если выводимая сумма больше баланса счета то выводит сообщение
+     * "Ошибка! недостаточно средств на счету."
      * @return
      */
     @GetMapping(value = "/info/withdrawCash")
@@ -275,15 +282,14 @@ public class UserAccount {
             modelAndView.addObject("currency", account.getCurrency());
         }else {
             modelAndView.addObject("newBalance",
-                    "Input your number the number account");
+                    "Введите пожалуйста номер счета");
             return modelAndView;
-
         }
         if (сalculations.getNewBalance() < 0){
 
             modelAndView.addObject("newBalance", сalculations.getOldBalance());
             modelAndView.addObject("currency", account.getCurrency());
-            modelAndView.addObject("errorBalance", "Mistake! insufficient funds in the account.");
+            modelAndView.addObject("errorBalance", "Ошибка! недостаточно средств на счету.");
             return modelAndView;
         }
         if((account = repository.findByNumberAccount(numberAccount)) == null){
@@ -294,13 +300,13 @@ public class UserAccount {
 
     /**
      * Принимает параметры "moneyString".
-     * По номеру счета суммируется поступившая сумма с суммой из bd.
+     * По номеру счета вычетается поступившая сумма с суммой из bd.
      * Получаемая сумма сохраняется в bd и выводится новая информация
      * getInformationDepositCash().
      *      Если user не ввел вносимую сумму "money = "" " то
      * money = 0 и выводится неизмененная информация по сумме.
      *      Если номер счета не введен или введен тот, которого его
-     * нет в bd, выскакивает окно с просьбой проверить № или
+     * нет в bd, выскакивает окно с просьбой проверить Номер счета или
      * создать новый.
      *      Также записывается транзакция в бд.
      * @param moneyString
@@ -315,7 +321,6 @@ public class UserAccount {
         }else {
             money = Double.parseDouble(moneyString);
         }
-
         account = repository.findByNumberAccount(numberAccount);
         сalculations.setNewBalanceAndNumberAccount(money,numberAccount);
 
@@ -356,7 +361,7 @@ public class UserAccount {
 
     /**
      * Получаем тип счета и тип аккаунта
-     * и создаем новый счет
+     * и создаем новый счет при перезагрузки странички
      * @param accountType
      * @param currency
      * @return
@@ -372,7 +377,8 @@ public class UserAccount {
     }
 
     /**
-     * Выводим всю информацию по транзакциям счета.
+     * Выводим всю информацию по транзакциям по определенному счету.
+     * Если счета нет, то выбрасываем ошибку о созданиии или вводе счета.
      * @return
      */
     @GetMapping(value = "/info/accountStatement")
