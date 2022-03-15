@@ -12,10 +12,8 @@ import java.util.Objects;
 /**
  * Класс Cards - POJO-класс (Plain Old Java Object) таблицы cards
  *
- * @version 1.0
  * @autor Evgeniy Nochkin
- * @see CardsRepository#Object()
- *
+ * @version 1.0
  */
 @Component
 @Entity
@@ -48,15 +46,6 @@ public class Card {
     private CardStatusType cardStatus;
 
     public Card() {
-    }
-
-    public Card(String cardNumber, Account numberAccount, Date expirationDate, String cardHolderName, PaymentSystemType paymentSystem, CardStatusType cardStatus) {
-        this.cardNumber = cardNumber;
-        this.numberAccount = numberAccount;
-        this.expirationDate = expirationDate;
-        this.cardHolderName = cardHolderName;
-        this.paymentSystem = paymentSystem;
-        this.cardStatus = cardStatus;
     }
 
     public void setId(Integer id) { this.id = id; }

@@ -9,28 +9,28 @@
     <title>Card info</title>
 </head>
 <body>
-    <h1 class="utitle">Client information</h1>
+    <h1 class="utitle">Информация о клиенте</h1>
     <form class="formusers">
-        Login: ${client.userLogin}<br>
-        First name: ${client.firstName}<br>
-        Middle name: ${client.middleName}<br>
-        Last name: ${client.lastName}<br>
-        Birthday: ${client.birthday}<br>
-        Passport: ${client.passport}<br>
-        Passport organisation: ${client.passportOrg}<br>
-        Passport date: ${client.passportDate}<br>
-        Email: ${client.email}<br>
-        Phone: ${client.phone}<br>
+        Логин: ${client.userLogin}<br>
+        Имя: ${client.firstName}<br>
+        Отчество: ${client.middleName}<br>
+        Фамилия: ${client.lastName}<br>
+        Дата рождения: ${client.birthday}<br>
+        Номер паспорта: ${client.passport}<br>
+        Организация выдавшая паспорт: ${client.passportOrg}<br>
+        Дата выдачи: ${client.passportDate}<br>
+        E-mail: ${client.email}<br>
+        Номер телефона: ${client.phone}<br>
         <br>
         <table border="1" width="1500" class="usertable">
-            <caption>Open account and cards</caption>
+            <caption>Открытые счета и карты:</caption>
             <tr bgcolor="Gainsboro">
-                <td class="zag">Account</td>
-                <td class="zag">Currency</td>
-                <td class="zag">Type account</td>
-                <td class="zag">Card</td>
-                <td class="zag">Type card</td>
-                <td class="zag">Balance</td>
+                <td class="zag">Номер счета</td>
+                <td class="zag">Валюта счета</td>
+                <td class="zag">Тип счета</td>
+                <td class="zag">Номер карты</td>
+                <td class="zag">Платежная система</td>
+                <td class="zag">Баланс</td>
                 <td class="zag"></td>
             </tr>
             <c:forEach items="${accounts}" var="acc">
@@ -41,14 +41,14 @@
                     <td>${acc.value.cardNumber}</td>
                     <td>${acc.value.paymentSystem}</td>
                     <td>${acc.key.balance}</td>
-                    <td><input class="ulink" name="accountNumber" formaction="/account/info/${acc.key.numberAccount}" formmethod="get" type="submit" value="Info Account"></td>
+                    <td><input class="ulink" name="accountNumber" formaction="/account/info/${acc.key.numberAccount}" formmethod="get" type="submit" value="Информация по счету"></td>
                 </tr>
             </c:forEach>
         </table>
         <br>
-        <td><input class="ulink" name="userLogin" formaction="/account/add/${client.userLogin}" formmethod="get" type="submit" value="Create New Account"></td>
+        <td><input class="button25" name="userLogin" formaction="/account/add/${client.userLogin}" formmethod="get" type="submit" value="Открыть новый счет"></td>
         <br><br>
-        <a href="/showall" class="button24">Go back</a> <a href="/logout" class="button24">Logout</a>
+        <a href="/showall" class="button24">К списку клиентов</a> <a href="/logout" class="button24">Выход</a>
     </form>
 </body>
 </html>

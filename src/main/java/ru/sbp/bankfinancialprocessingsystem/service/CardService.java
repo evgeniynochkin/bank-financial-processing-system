@@ -14,6 +14,9 @@ import java.util.List;
 
 /**
  * Сервисы работы с банковскими картами
+ *
+ * @author Evgeniy Nochkin
+ * @version 1.0
  */
 @Service
 public class CardService {
@@ -26,7 +29,7 @@ public class CardService {
 
     /**
      * Создание карты
-     * @param card
+     * @param card карта с частично заполненными полями
      */
     public void createNewCard(Card card) {
         List<Card> list = repo.findAll();

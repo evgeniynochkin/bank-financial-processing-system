@@ -10,6 +10,9 @@ import java.util.List;
 
 /**
  * Утилиты для формирования номера карты
+ *
+ * @author Evgeniy Nochkin
+ * @version 1.0
  */
 public class CardUtil {
 
@@ -106,8 +109,8 @@ public class CardUtil {
 
     /**
      * Алгоритм Луна
-     * @param value
-     * @return
+     * @param value проверяемый номер
+     * @return true если соответствует алгоритму Луна
      */
     private static boolean isValidLuhn(String value) {
         int sum = Character.getNumericValue(value.charAt(value.length() - 1));
