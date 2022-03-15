@@ -9,11 +9,13 @@ import ru.sbp.bankfinancialprocessingsystem.dao.entity.Card;
 import ru.sbp.bankfinancialprocessingsystem.dao.entity.enums.PaymentSystemType;
 import ru.sbp.bankfinancialprocessingsystem.dao.repositories.AccountRepository;
 import ru.sbp.bankfinancialprocessingsystem.service.CardService;
-import ru.sbp.bankfinancialprocessingsystem.service.account.AccountService;
 
-import java.util.Arrays;
-import java.util.List;
-
+/**
+ * Контроллер обработки запросов по карте
+ *
+ * @author Evgeniy Nochkin
+ * @version 1.0
+ */
 @Controller
 @RequestMapping(value = "/card")
 public class CardController {
@@ -26,6 +28,11 @@ public class CardController {
 
     private Account account;
 
+    /**
+     * Перенаправление на форму создания новой карты
+     * @param accountNumber номер счета к которому создается карта
+     * @return форма создания карты
+     */
     @GetMapping("/add/{accountNumber}")
     public ModelAndView addCard(@PathVariable(value = "accountNumber") String accountNumber) {
         ModelAndView mav = new ModelAndView();
@@ -44,6 +51,13 @@ public class CardController {
         return mav;
     }
 
+    /**
+     * Внесение новой карты в базу данных
+     * @param card новая карта
+     * @param cardType тип карты
+     * @param holderName имя на карте
+     * @return записанная карта
+     */
     @PostMapping("/add")
     public ModelAndView addCard(@ModelAttribute Card card,
                                 @RequestParam("cardType") String cardType,
@@ -66,6 +80,11 @@ public class CardController {
         return this.getCardPage(card);
     }
 
+    /**
+     * Отправка на форму с информацией по карте
+     * @param card карта
+     * @return форма с информацией по карте
+     */
     @GetMapping("/info")
     public ModelAndView getCardPage(Card card) {
 
@@ -83,6 +102,10 @@ public class CardController {
         return mav;
     }
 
+    /**
+     * Отправка на форму с информацией по карте
+     * @return форма с информацией по карте
+     */
     @PostMapping("/info")
     public ModelAndView setCard() {
         ModelAndView mav = new ModelAndView();

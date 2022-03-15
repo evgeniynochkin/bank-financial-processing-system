@@ -16,6 +16,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Обработка запроса информации по клиенту
+ *
+ * @author Evgeniy Nochkin
+ * @version 1.0
+ */
 @Controller
 public class ClientController {
 
@@ -28,6 +34,11 @@ public class ClientController {
     @Autowired
     CardsRepository cardsRepository;
 
+    /**
+     * Формирование информации по логину клиента
+     * @param userLogin логин клиента
+     * @return список счетов и карт
+     */
     @GetMapping("/clientinfo/{userLogin}")
     public ModelAndView getClientInfo(@PathVariable(value = "userLogin") String userLogin) {
         ModelAndView mav = new ModelAndView();
@@ -35,7 +46,6 @@ public class ClientController {
         Clients client = clientsRepository.findByUserLogin(userLogin);
         List<Account> accounts = accountRepository.findByUserLogin(userLogin);
         Map<Account, Card> cards = new HashMap<>();
-        Map<Account, String> accs = new HashMap<>();
 
         if (accounts.size() > 0) {
             for (Account acc : accounts) {
