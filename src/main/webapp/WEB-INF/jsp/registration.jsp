@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  <html lang="en">
  <head>
+<%--     <link href="${pageContext.request.contextPath}/assets/css/style.css" rel="stylesheet" type="text/css">--%>
      <meta charset="UTF-8">
     <title>Sign Up</title>
     <SCRIPT TYPE="text/javascript">
@@ -170,7 +171,7 @@
     </style>
 </head>
 
-<body>
+<body class="body2">
 <div class = "box">
     <form action="" method="POST" NAME="registerForm" onSubmit="return(checkRegistration())">
         <div class="h-form-item">
@@ -224,9 +225,10 @@
                     <input type="text" id ="Phone" name="telephone" onBlur="clearStatus()"/>
                 </div>
                 <div class="field_signup">
-                    <input type="submit" value="Зарегестрировать" />
+                    <input class="button24" type="submit" value="Зарегестрировать" />
                     <br>
-                    <a href="/afterlogin" class="button24">Вернуться</a> <a href="/logout" class="button24">Logout</a>
+                    <br>
+                    <a href="/afterlogin" class="button24">Операционное меню</a> <a href="/logout" class="button24">Выход</a>
                 </div>
             </div>
         </div>
