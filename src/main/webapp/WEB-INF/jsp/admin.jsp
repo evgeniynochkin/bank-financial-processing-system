@@ -16,13 +16,13 @@
                     <a href="/showall" class="button2">Все клиенты</a>
                </div>
                <div class="field_signup">
-                    <a href="/add" class="button2">Регистрация</a>
+                    <a href="/add" class="button2">Регистрация клиента</a>
                </div>
                 <div class="field_signup">
                       <a href="/delete" class="button2">Удаление клиента</a>
                 </div>
                 <div class="field_signup">
-                    <a href="/clients/main" class="button2">Поиск и изменения пользователя</a>
+                    <a href="/clients/main" class="button2">Поиск и изменение данных о клиенте</a>
                 </div>
                 <br>
                 <div class="field_signup">
