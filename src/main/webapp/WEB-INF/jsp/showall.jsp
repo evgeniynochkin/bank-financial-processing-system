@@ -39,7 +39,7 @@
 
         </table>
             <br>
-            <a href="/afterlogin" class="button24">Меню администратора</a> <a href="/logout" class="button24">Выход</a>
+            <a href="/afterlogin" class="button24">Операционное меню</a> <a href="/logout" class="button24">Выход</a>
     </form>
 </body>
 </html>

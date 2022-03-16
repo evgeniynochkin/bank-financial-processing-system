@@ -4,119 +4,72 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page pageEncoding="UTF-8" %>
 <head>
+    <link href="${pageContext.request.contextPath}/assets/css/style.css" rel="stylesheet" type="text/css">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Bank financial processing system</title>
-	<style>
-html,
-body {
-    margin:0;
-    padding:0;
-    color:#000;
-    background:#fff;
-}
-#body {
-    width:960px;
-    margin:0 auto;
-    background:#ddd;
-}
-#header {
-    padding:10px;
-    background:#fdd;
-}
-#content-1 {
-    float:left;
-    width:300px;
-    padding:10px;
-    background:#bfb;
-}
-#content-2-1 {
-    float:left;
-    width:300px;
-    padding:10px;
-    background:#ddf;
-}
-#content-2-2 {
-    float:right;
-    width:300px;
-    padding:10px;
-    background:#dff;
-}
-#footer {
-    padding:10px;
-    background:#ff9;
-}
-/* Облегчение отмены обтекания элементов */
-.cf:after {
-	display:block;
-	clear:both;
-	height:0;
-	visibility:hidden;
-	content:" ";
-	font-size:0;
-}
-/* Не пройдет проверку – используйте условный комментарий */
-.cf {*zoom:1;}
-	</style>
 </head>
 <body>
-	<div id="body">
+	<div class="postform2">
 		<div id="header" class="cf">
-			<h1>Bank financial processing system</h1>
-			<p>${message} </p>
+			<h2>${message}</h2>
 		</div>
 		<div id="main" class="cf">
-			<div id="content-1">
-                <form action="../clients/main" method="GET" >
-
-                    <button id="all" name="find" class="btn btn-default" value="all">
-                        Назад
-                    </button>
-                </form>
-			</div>
 			<div id="content-2">
-				<div id="content-2-1">
-                    <div class="form-group">
-                        <p>
-                            <c:forEach items="${clientsList1}" var="clients">
-                                login: ${clients.userLogin} <br>
-                                Firstname: ${clients.firstName} <br>
-                                MiddleName: ${clients.middleName} <br>
-                                LastName: ${clients.lastName} <br>
-                                Birthday: ${clients.birthday} <br>
-                                Passport: ${clients.passport} <br>
-                                PassportOrg: ${clients.passportOrg} <br>
-                                PassportDate: ${clients.passportDate} <br>
-                                Email: ${clients.email} <br>
-                                Phone: ${clients.phone} <br>
-                                <hr>
-                            </c:forEach>
-                        </p>
-                    </div>
-                </div>
-                <div id="content-2-2">
-                    <p>
-                        <c:forEach items="${clientsList2}" var="clients">
-                            login: ${clients.userLogin} <br>
-                            Firstname: ${clients.firstName} <br>
-                            MiddleName: ${clients.middleName} <br>
-                            LastName: ${clients.lastName} <br>
-                            Birthday: ${clients.birthday} <br>
-                            Passport: ${clients.passport} <br>
-                            PassportOrg: ${clients.passportOrg} <br>
-                            PassportDate: ${clients.passportDate} <br>
-                            Email: ${clients.email} <br>
-                            Phone: ${clients.phone} <br>
-                            <hr>
-                        </c:forEach>
-                    </p>
-                    <p><form class="form-horizontal"></form></p>
-				</div>
+                <table>
+                    <tr>
+                        <td>
+                            <div id="content-2-1">
+                                <div class="form-group">
+                                    <p>
+                                        <c:forEach items="${clientsList1}" var="clients">
+                                            Логин: ${clients.userLogin} <br>
+                                            Имя: ${clients.firstName} <br>
+                                            Отчество: ${clients.middleName} <br>
+                                            Фамилия: ${clients.lastName} <br>
+                                            День рождения: ${clients.birthday} <br>
+                                            Номер паспорта: ${clients.passport} <br>
+                                            Организация: ${clients.passportOrg} <br>
+                                            Дата выдачи: ${clients.passportDate} <br>
+                                            E-mail: ${clients.email} <br>
+                                            Телефон: ${clients.phone} <br>
+                                            <hr>
+                                        </c:forEach>
+                                    </p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div id="content-2-2">
+                                <p>
+                                    <c:forEach items="${clientsList2}" var="clients">
+                                        Логин: ${clients.userLogin} <br>
+                                        Имя: ${clients.firstName} <br>
+                                        Отчество: ${clients.middleName} <br>
+                                        Фамилия: ${clients.lastName} <br>
+                                        День рождения: ${clients.birthday} <br>
+                                        Номер паспорта: ${clients.passport} <br>
+                                        Организация: ${clients.passportOrg} <br>
+                                        Дата выдачи: ${clients.passportDate} <br>
+                                        E-mail: ${clients.email} <br>
+                                        Телефон: ${clients.phone} <br>
+                                        <hr>
+                                    </c:forEach>
+                                </p>
+                                <p><form class="form-horizontal"></form></p>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
 			</div>
 		</div>
 		<div id="footer" class="cf">
-			<p>
-
-            </p>
+            <form action="../clients/main" method="GET" >
+                <button class="button24" name="find" class="btn btn-default" value="all">
+                    К поиску клиентов
+                </button>
+            </form>
+            <br>
+            <a href="/afterlogin" class="button24">Операционное меню</a> <a href="/logout" class="button24">Выход</a>
 		</div>
 	</div>
 </body></html>

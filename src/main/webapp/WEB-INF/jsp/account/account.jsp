@@ -1,46 +1,71 @@
 <%--Author Sergey Vasiliev--%>
-<html>
+<!DOCTYPE html>
+<html lang="ru" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<%@ page isELIgnored="false" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page pageEncoding="UTF-8" %>
 <head>
 	<link href="${pageContext.request.contextPath}/assets/css/style.css" rel="stylesheet" type="text/css">
 	<title>User panel</title>
 </head>
 <body>
-	<h1>Account information</h1>
+<div class="postform2">
+	<h1>Информация о счете</h1>
 	<form action="/account/info" method="get">
-			User: ${login}<br>
-			Account number: ${accountNumber} <br>
-			Card number: ${card}<br>
-			Data open: ${dateOpen} <br>
-			Activity status: ${activityStatus}<br>
-			Balance: ${balance} ${currency}<br>
+			Логин клиента: ${login}<br>
+			Номер счета: ${accountNumber} <br>
+			Номер карты: ${card}<br>
+			Дата открытия счета: ${dateOpen} <br>
+			Действующий: ${activityStatus}<br>
+			Баланс: ${balance} ${currency}<br>
 	</form>
 	<br>
 	<form action="/account/info" method="post">
-		Input the number account:<br>
+		Поиск по номеру счета (введите номер счета):<br>
 		<input name="numberAccount"><br>
-		<input type="submit"><br>
+		<input class="ulink" type="submit" value="Искать"><br>
 	</form>
 	<br>
-	<form action= "/account/info/createAnAccount" method="get" >
-		<input type="submit" value="Create account number">
-	</form>
-	<form action="/account/info/updateDeposit" method="get" >
-		<input type="submit" value="Deposit money">
-	</form>
-	 <form action="/account/info/withdrawCash" method="get">
-		 <input type="submit" value="Withdraw cash">
-	 </form>
-	<form action="/account/info/accountStatement" method="get">
-		   <button>Account statement</button>
-	</form>
-	<form action="/card/info" method="get">
-		<td><input name="accountNumber" formaction="/card/add/${accountNumber}" formmethod="get" type="submit" value="Create card"></td>
-	</form>
+    <table>
+        <tr>
+            <td>
+                <form action= "/account/info/createAnAccount" method="get" >
+                    <input class="ulink" type="submit" value="Создать новый счет">
+                </form>
+            </td>
+            <td>
+                <form action="/account/info/updateDeposit" method="get" >
+                    <input class="ulink" type="submit" value="Внести деньги">
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form action="/card/info" method="get">
+                    <input class="ulink" name="accountNumber" formaction="/card/add/${accountNumber}" formmethod="get" type="submit" value="Открыть карту"></td>
+                </form>
+            </td>
+            <td>
+                <form action="/account/info/withdrawCash" method="get">
+                    <input class="ulink" type="submit" value="Снять деньги">
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <form action="/account/info/accountStatement" method="get">
+                    <button class="ulink">Выписка</button>
+                </form>
+            </td>
+        </tr>
+    </table>
 	<br>
 	<form>
-		<input input name="userLogin" formaction="/clientinfo/${login}" formmethod="get" type="submit" value="Client info">
+		<input class="button24" name="userLogin" formaction="/clientinfo/${login}" formmethod="get" type="submit" value="Информация о клиенте">
 	</form>
 	<br>
 	<a href="/showall" class="button24">К списку клиентов</a>
+</div>
 </body>
 </html>
