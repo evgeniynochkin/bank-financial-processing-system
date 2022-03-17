@@ -177,7 +177,7 @@
         <div class="h-form-item">
             <div class="main">
                 <div class="field">
-                    <label for="login">Login :</label>
+                    <label for="login">Логин :</label>
                     <input type="text" name="userlogin"  id="login" onBlur="clearStatus()"/>
                 </div>
                 <div class="field">
@@ -203,16 +203,16 @@
                 </div>
 
                 <div class="field">
-                    <label for="passport">Паспорт:</label>
+                    <label for="passport">Номер паспорта:</label>
                     <input type="text" name ="passport" id ="passport" onBlur="clearStatus()"/>
                 </div>
                 <div class="field">
-                    <label for="passportorg">Организация:</label>
+                    <label for="passportorg">Выдвашая организация:</label>
                     <input type="text" name ="passportorg" id ="passportorg" onBlur="clearStatus()"/>
                 </div>
 
                 <div class="field">
-                    <label for="passportdate">Дата Паспорта (yyyy-MM-dd):</label>
+                    <label for="passportdate">Дата выдачи (yyyy-MM-dd):</label>
                     <input type="text" name ="passportdate" id ="passportdate" onBlur="clearStatus()"/>
                 </div>
 

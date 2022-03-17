@@ -1,6 +1,6 @@
 package ru.sbp.bankfinancialprocessingsystem.dao.repositories;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import ru.sbp.bankfinancialprocessingsystem.dao.entity.GlobalUser;
 
@@ -12,6 +12,6 @@ import ru.sbp.bankfinancialprocessingsystem.dao.entity.GlobalUser;
  * @see GlobalUser#GlobalUser()
  */
 @Repository
-public interface GlobalUserRepository extends CrudRepository<GlobalUser, String> {
+public interface GlobalUserRepository extends JpaRepository<GlobalUser, String> {
 
 }
