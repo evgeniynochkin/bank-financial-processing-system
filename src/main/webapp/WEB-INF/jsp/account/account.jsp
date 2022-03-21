@@ -19,13 +19,7 @@
 			Действующий: ${activityStatus}<br>
 			Баланс: ${balance} ${currency}<br>
 	</form>
-	<br>
-	<form action="/account/info" method="post">
-		Поиск по номеру счета (введите номер счета):<br>
-		<input name="numberAccount"><br>
-		<input class="ulink" type="submit" value="Искать"><br>
-	</form>
-	<br>
+    <br>
     <table>
         <tr>
             <td>
@@ -60,7 +54,13 @@
             </td>
         </tr>
     </table>
-	<br>
+    <br>
+    <form action="/account/info" method="post">
+        Поиск по номеру счета (введите номер счета):<br>
+        <input name="numberAccount"><br>
+        <input class="ulink" type="submit" value="Искать"><br>
+    </form>
+    <br>
 	<form>
 		<input class="button24" name="userLogin" formaction="/clientinfo/${login}" formmethod="get" type="submit" value="Информация о клиенте">
 	</form>

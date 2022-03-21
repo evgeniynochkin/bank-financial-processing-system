@@ -1,34 +1,17 @@
 # README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+### О чем: ###
 
-### What is this repository for? ###
+* Дипломный проект курсов профессиональной переподготовки в СберУниверситете.
+* Приложение по работе с базой данных клиентов, их персональных данных и банковских услуг.
+* Version 1.0 (Рабочая версия. Большая часть тестов отсутствует.)
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+### Команда разработки: ###
 
-### How do I get set up? ###
-
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin: sproshchaev@gmail.com
+* Repo owner or admin: evgenusn@gmail.com
 * Other community or team contact:
   clame023@gmail.com
-  evgenusn@gmail.com
+  sproshchaev@gmail.com
   konstfilin1962@gmail.com
   vasiljevserj777@gmail.com
 
@@ -105,28 +88,4 @@ PostgreSQL
 ----------
 port: 5432, user: postgres, password: 12345
 ----------
-Таблица BankData
-CREATE TABLE BankData (ID INTEGER PRIMARY KEY, BIC VARCHAR(10), FullName VARCHAR(100), AbbreviatedName VARCHAR(50), License VARCHAR(100), RegisteredAddress VARCHAR(50), PostalAddress VARCHAR(50), CorrespondentAccount VARCHAR(20), KPP VARCHAR(20), INN VARCHAR(20), OGRN VARCHAR(20), SWIFT VARCHAR(50));
 
-yaml - вместо app.prop.!!!
-
-======================================================План действий.txt (Олег) ======================================================================
-Предлагаю составить план на короткое время (типа спринт):
-1) Загрузить общий проект с БитБакета на свой компьютер и запустить
-   Проверить работоспособность программы перейдя по ссылке localhost:8080/bank/test
-   - должна вернуться "не пустая" страница
-
-2) Запилить интерфейсы (у каждого по проекту есть своя "веб-морда")
-   По аналогии с тестовой страницей делаем свою "Веб-морду"
-   Нужно согласовать общую папку для хранения html/jsp
-   Требования к "веб-морде":
-   Минимальный функционал!! (т.е. чтобы запустилось по сстлке "извне" типа как в тесте)
-   Желательно что нибудь подгрузить со "своей" таблицы из БД
-
-3) Весь новый функционал пилим в своей локальной ветке общего репозитория
-   По готовности загружаем данные в develop_m из БитБакета (обновляем из общего репозитория, вдруг кто то чего нибудь уже напилил)
-   Локально Мёрджим (объединяем) со своей веткой
-   Выгружаем в свою ветку удаленного репозитория БитБакета
-   и через PullRequest добавляем свой функционал в ветку develop_m (в ПР нужно добавить Романа(trv))
-
-Если есть у кого что изменить/добавить прошу дополнить этот документ
